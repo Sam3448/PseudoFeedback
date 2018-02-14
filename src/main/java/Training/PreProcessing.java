@@ -29,8 +29,8 @@ public class PreProcessing {
         String line = "";
         while((line = br.readLine()) != null){
             String[] cur = line.split("\t");
-            en.put(cur[0], cur[1]);
-            sw.put(cur[0], cur[2]);
+            sw.put(cur[0], cur[1]);
+            en.put(cur[0], cur[2]);
         }
         br.close();
     }
