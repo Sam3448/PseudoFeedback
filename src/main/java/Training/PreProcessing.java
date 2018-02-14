@@ -14,11 +14,14 @@ import java.util.*;
 
 public class PreProcessing {
     static File inputFile;
-    static String swOutputFile = "/Users/SamZhang/Documents/RA2017/Pseudo/src/bitext/en.txt";
-    static String enOutputFile = "/Users/SamZhang/Documents/RA2017/Pseudo/src/bitext/sw.txt";
+    static String swOutputFile;
+    static String enOutputFile;
     static HashMap<String, String> sw = new HashMap(), en = new HashMap();
     static void init() throws IOException{
         inputFile = new ClassPathResource("/MTDoc/MATERIAL_BASE-1A-BUILD_bitext.txt").getFile();
+        swOutputFile = inputFile.getParentFile() + "/sw.txt";
+        enOutputFile = inputFile.getParentFile() + "/en.txt";
+        System.out.println(new ClassPathResource("/MTDoc/en.txt").getFile().getAbsoluteFile());
     }
     public static void processing() throws IOException{
         init();
@@ -31,7 +34,7 @@ public class PreProcessing {
         }
         br.close();
     }
-    public static void fileOutput() throws IOException{
+    public static String[] fileOutput() throws IOException{
         File swout = new File(swOutputFile), enout = new File(enOutputFile);
         FileWriter fwsw = new FileWriter(swout), fwen = new FileWriter(enout);
 
@@ -43,6 +46,8 @@ public class PreProcessing {
 
         fwsw.close();
         fwen.close();
+
+        return new String[]{swOutputFile, enOutputFile};
     }
 }
 
