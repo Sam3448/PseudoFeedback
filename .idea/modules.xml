@@ -3,6 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PseudoFeedback.iml" filepath="$PROJECT_DIR$/PseudoFeedback.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/datavec-examples/datavec-examples.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/datavec-examples/datavec-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/deeplearning4j-examples-parent.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/deeplearning4j-examples-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/dl4j-cuda-specific-examples/dl4j-cuda-specific-examples.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/dl4j-cuda-specific-examples/dl4j-cuda-specific-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/dl4j-examples/dl4j-examples.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/dl4j-examples/dl4j-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/dl4j-spark-examples/dl4j-spark/dl4j-spark.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/dl4j-spark-examples/dl4j-spark/dl4j-spark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/dl4j-spark-examples/dl4j-spark-examples.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/dl4j-spark-examples/dl4j-spark-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/lstm-hdfs/lstm-hdfs.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/lstm-hdfs/lstm-hdfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/nd4j-examples/nd4j-examples.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/nd4j-examples/nd4j-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../example/dl4j-examples/rl4j-examples/rl4j-examples.iml" filepath="$PROJECT_DIR$/../example/dl4j-examples/rl4j-examples/rl4j-examples.iml" />
     </modules>
   </component>
 </project>

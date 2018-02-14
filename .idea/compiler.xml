@@ -6,11 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="datavec-examples" />
+        <module name="dl4j-cuda-specific-examples" />
+        <module name="dl4j-examples" />
+        <module name="dl4j-spark" />
+        <module name="lstm-hdfs" />
+        <module name="nd4j-examples" />
         <module name="PseudoFeedback" />
+        <module name="rl4j-examples" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="datavec-examples" target="1.8" />
+      <module name="deeplearning4j-examples-parent" target="1.5" />
+      <module name="dl4j-cuda-specific-examples" target="1.8" />
+      <module name="dl4j-examples" target="1.8" />
+      <module name="dl4j-spark" target="1.8" />
+      <module name="dl4j-spark-examples" target="1.5" />
+      <module name="lstm-hdfs" target="1.7" />
+      <module name="nd4j-examples" target="1.7" />
       <module name="PseudoFeedback" target="1.5" />
+      <module name="rl4j-examples" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
