@@ -1,0 +1,301 @@
+query_id	query_string	query_type	first_type	second_type	query_domain
+query1925	end of the year exams	L	L	NULL	GOV
+query2486	insect	L	L	NULL	GOV
+query3530	blood pressure	L	L [hyp:medical condition]	NULL	GOV
+query3637	broadcasted live	L	L M [syn:in real time]	NULL	GOV
+query3772	lungs	L	L M [hyp:body part]	NULL	GOV
+query1236	ankle bells	L	L	NULL	GOV
+query3011	spy,bomb	L	L [hyp:person]	L [hyp:explosive]	GOV
+query482	road accident	L	L	NULL	GOV
+query3532	reduce,accident	L	L [syn:curtail]	L [syn:mishap]	GOV
+query478	British colonies	L	L	NULL	GOV
+query1997	city council	L	L	NULL	GOV
+query1528	Bungoma,factory	L	L	L	GOV
+query1930	rebuild	L	L	NULL	GOV
+query1824	sustainability,motorcycle	L	L	L	GOV
+query3993	commit suicide,gun	L	L [syn:self murder]	L [hyp:weapon]	GOV
+query1637	Al Bashir,president	L	L	L	GOV
+query1980	sunflower oil	L	L	NULL	GOV
+query1899	crown	L	L [hyp:headgear]	NULL	GOV
+query1916	garbage,ladder	L	L	L	GOV
+query2012	church	L	L	NULL	GOV
+query1412	publicity,protest	L	L	L	GOV
+query1904	Red Cross	L	L [hyp:aid organization]	NULL	GOV
+query1639	Ugandan	L	L [syn:person from Uganda]	NULL	GOV
+query1539	Brazil,refugee	L	L	L	GOV
+query1554	Shimoni,political refugees	L	L	L	GOV
+query1056	poem	L	L	NULL	GOV
+query1820	breakfast	L	L	NULL	GOV
+query1903	snow	L	L	NULL	GOV
+query1634	port	L	L [syn:harbor]	NULL	GOV
+query1424	library	L	L [evf:books]	NULL	GOV
+query1648	arrow	L	L	NULL	GOV
+query3609	peace treaty,law	L	L [syn:peace agreement]	L	GOV
+query1908	cockroach	L	L	NULL	GOV
+query1053	foolish	L	L	NULL	GOV
+query1617	bottle	L	L [hyp:container]	NULL	GOV
+query375	news,weather	L	L	L	GOV
+query483	by-election	L	L	NULL	GOV
+query3485	hammer	L	L [hyp:hand tool]	NULL	GOV
+query3998	made tired	L	L M	NULL	GOV
+query1408	picture,hotel	L	L [syn:photograph]	L	GOV
+query1626	sugar factory	L	L	NULL	GOV
+query3539	invitation,formal	L	L [syn:request to attend]	L [syn:official]	GOV
+query2270	fickle	L	L	NULL	GOV
+query1641	orange,wisdom	L	L [hyp:fruit]	L	GOV
+query4035	abstained	L	L M [syn:hold back from doing]	NULL	GOV
+query1532	Singapore,pig	L	L	L	GOV
+query1901	soccer	L	L	NULL	GOV
+query1443	club,match	L	L [syn:association]	L [evf:competition]	GOV
+query1057	improve transportation	L	L	NULL	GOV
+query2022	bilharzia	L	L	NULL	GOV
+query1802	rent,house	L	L	L	GOV
+query1852	horse	L	L [hyp:animal]	NULL	GOV
+query1787	shield	L	L [hyp:armor]	NULL	GOV
+query3564	planet	L	L	NULL	GOV
+query2985	favor	L	L [syn:boon]	NULL	GOV
+query1964	motorcycle	L	L	NULL	GOV
+query3261	band	L	L [evf:music]	NULL	GOV
+query1405	drugs	L	L [hyp:illicit substances]	NULL	GOV
+query3793	donut	L	L [hyp:food]	NULL	GOV
+query480	gun	L	L	NULL	GOV
+query468	coffee	L	L [hyp:beverage]	NULL	GOV
+query3515	stage,South Africa	L	L [syn:arena]	L	GOV
+query2015	ghost	L	L [syn:spirit]	NULL	GOV
+query3814	cheetah	L	L	NULL	GOV
+query4344	fertilize,soil	L	L [syn:apply nutrients]	L [syn:ground]	GOV
+query1635	paradise	L	L	NULL	GOV
+query1465	public enterprise	L	L	NULL	GOV
+query1792	ditch	L	L [syn:trench]	NULL	GOV
+query1910	tire	L	L [evf:cars]	NULL	GOV
+query1816	pineapple	L	L [hyp:fruit]	NULL	GOV
+query1999	municipal	L	L	NULL	GOV
+query1541	Sahara,infant mortality	L	L	L	GOV
+query4030	matches	L	L M [hyp:lighter]	NULL	GOV
+query1631	face,earth	L	L [syn:visage]	L [syn:world]	GOV
+query1444	pipes,pressure	L	L [syn:water conduit]	L [hyp:physical force]	GOV
+query3049	root	L	L [syn:source]	NULL	GOV
+query1954	deforestation	L	L	NULL	GOV
+query2000	deputy mayor	L	L	NULL	GOV
+query2684	national team	L	L	NULL	GOV
+query3700	earthen cooking pot,water	L	L	L [hyp:liquid]	GOV
+query2908	toothless person	L	L	NULL	GOV
+query2021	elephantiasis	L	L	NULL	GOV
+query1644	crisis,solution	L	L	L [syn:answer]	GOV
+query1419	small group,party	L	L	L [evf:politics]	GOV
+query472	factory,strike	L	L	L [evf:labor]	GOV
+query3044	childhood	L	L	NULL	GOV
+query2234	pilot	L	L [syn:aviator]	NULL	GOV
+query2002	ledger	L	L [syn:account book]	NULL	GOV
+query1817	rabbit	L	L	NULL	GOV
+query484	stock exchange	L	L	NULL	GOV
+query1638	bishop	L	L [hyp:religion]	NULL	GOV
+query1406	vice president	L	L	NULL	GOV
+query1421	the most important thing	L	L	NULL	GOV
+query1645	knife	L	L	NULL	GOV
+query1404	fish	L	L [hyp:animal]	NULL	GOV
+query1988	bishop	L	L [evf:religion]	NULL	GOV
+query1851	pork	L	L [hyp:pig meat]	NULL	GOV
+query1409	ambassador,camera	L	L	L	GOV
+query1975	marijuana	L	L	NULL	GOV
+query2020	worms	L	L [hyp:parasite]	NULL	GOV
+query3518	congratulation,USA	L	L [syn:felicitation]	L	GOV
+query1647	salute	L	L [hyp:formal gesture]	NULL	GOV
+query1054	secret service	L	L	NULL	GOV
+query1096	flashlight	L	L	NULL	GOV
+query3360	museums	L	L M	NULL	GOV
+query3835	telescope,evaluation	H	L	C	GOV
+query1924	albinos,clinic	H	C	L [syn:hospital]	GOV
+query1461	Mogadishu,farming	H	L	C	GOV
+query1086	imports,chalk	H	C	L [evf:chalkboard]	GOV
+query3905	Russia,sanctions	H	L	C	GOV
+query1600	Babati,dairy production	H	L	C	GOV
+query4357	green revolution,imperialism	H	L	C	GOV
+query1850	HPV,circumcision	H	C	L	GOV
+query4103	tear gas,dispersing crowds	H	L	C	GOV
+query1551	Kakamega,political campaigning	H	L	C	GOV
+query1572	Tunduma,embezzlement	H	L	C	GOV
+query1981	cancer,skin	H	C [hyp:disease]	L [hyp:anatomy]	GOV
+query1244	dinner,cup	H	C	L	GOV
+query1797	poverty,milk	H	C	L	GOV
+query4301	intersection,accident	H	L [syn:crossroads]	C	GOV
+query1933	boxing,shoes	H	C [evf:sports]	L [hyp:footwear]	GOV
+query1537	Clinton,apology	H	L	C	GOV
+query1847	enemy,fly	H	C	L [hyp:insect]	GOV
+query1913	pollution,needle	H	C	L [evf:medicine]	GOV
+query493	transportation,boat	H	C	L [hyp:vessel]	GOV
+query2566	Kisumu,funeral	H	L	C	GOV
+query4096	sugar factory,produce	H	L	C	GOV
+query1943	disability,crocodile	H	C	L	GOV
+query4406	brick,construct	H	L [syn:cinder block]	C [syn:build]	GOV
+query1014	building,Ummy Mwalimu	H	C [syn:constructing]	L	GOV
+query1083	education,make noise	H	C	L	GOV
+query2620	liberation,Chad	H	C	L	GOV
+query1814	flooding,goat	H	C	L [hyp:animal]	GOV
+query1927	India,weapon	H	L	C	GOV
+query3901	terms of reference,investigation	H	L	C	GOV
+query1652	grandparent	C	C EX	NULL	GOV
+query1178	poultry	C	C	NULL	GOV
+query498	ocean	C	C EX	NULL	GOV
+query4144	salary increase	C	C	NULL	GOV
+query1214	the eye	C	C	NULL	GOV
+query4139	white clothing	C	C	NULL	GOV
+query4000	combating malaria	C	C	NULL	GOV
+query1331	geometric shapes	C	C EX	NULL	GOV
+query3481	major appliances	C	C EX	NULL	GOV
+query3217	courts	C	C EX	NULL	GOV
+query4154	accident insurance	C	C	NULL	GOV
+query4137	child vaccination	C	C	NULL	GOV
+query2032	women's soccer	C	C	NULL	GOV
+query3292	car fuels	C	C EX	NULL	GOV
+query4148	selling cows	C	C	NULL	GOV
+query1521	seminar	L	L	NULL	LIF
+query3524	black,color	L	L [syn:dark]	L [syn:hue]	LIF
+query1030	under the bed	L	L	NULL	LIF
+query1721	afternoon	L	L	NULL	LIF
+query1495	pregnant,neighbor	L	L [evf:child birth]	L	LIF
+query2933	increase,price	L	L [syn:become greater]	L [syn:monetary value]	LIF
+query3647	cashew	L	L [hyp:nut]	NULL	LIF
+query1865	entrepreneurship	L	L	NULL	LIF
+query2017	lawyer	L	L	NULL	LIF
+query993	speech,death	L	L	L	LIF
+query1598	elephant	L	L	NULL	LIF
+query2725	chemist	L	L	NULL	LIF
+query2731	bacteria	L	L	NULL	LIF
+query2959	finally,Bukoba	L	L [syn:eventually]	L	LIF
+query1745	Nyanza,country	L	L	L	LIF
+query1974	mirror	L	L [syn:reflector]	NULL	LIF
+query988	police report	L	L	NULL	LIF
+query1985	shadow	L	L [syn:shade]	NULL	LIF
+query2447	cultural heritage	L	L	NULL	LIF
+query1707	warning,catalog	L	L	L	LIF
+query3120	shoulder to shoulder	L	L	NULL	LIF
+query1960	gun,defense	L	L [hyp:weapon]	L [syn:protection]	LIF
+query3215	predecessors	L	L M	NULL	LIF
+query2498	fisherman	L	L	NULL	LIF
+query3583	beautiful girl,Kenya	L	L	L	LIF
+query2031	property,bank	L	L [evf:land]	L	LIF
+query3390	green	L	L [hyp:color]	NULL	LIF
+query1868	fraudulent	L	L	NULL	LIF
+query1683	kilometer	L	L	NULL	LIF
+query1858	national symbol	L	L	NULL	LIF
+query2956	potatoes	L	L M	NULL	LIF
+query3748	stalk	L	L [syn:pursue stealthily]	NULL	LIF
+query4183	recently,visit	L	L [syn:not long ago]	L [syn:trip]	LIF
+query3008	coordinator,celebration	L	L	L	LIF
+query1719	back	L	L [evf:anatomy]	NULL	LIF
+query1491	delicate	L	L	NULL	LIF
+query1984	the American dream	L	L	NULL	LIF
+query1036	rat	L	L [hyp:animal]	NULL	LIF
+query982	living with diabetes	L	L	NULL	LIF
+query728	guest of honor	L	L	NULL	LIF
+query3736	fugitives	L	L M [syn:person escaping from the law or pursuer]	NULL	LIF
+query984	sugar	L	L [hyp:sweetener]	NULL	LIF
+query2003	vitamin	L	L	NULL	LIF
+query3309	name,girl	L	L [hyp:given name]	L [hyp:person]	LIF
+query1713	bread	L	L [hyp:food]	NULL	LIF
+query4040	cheese	L	L [hyp:dairy by-product]	NULL	LIF
+query1501	spit	L	L [syn:expectorate]	NULL	LIF
+query1714	body,respect	L	L [evf:anatomy]	L	LIF
+query1693	banana	L	L [hyp:fruit]	NULL	LIF
+query1853	furniture	L	L	NULL	LIF
+query2006	potassium	L	L	NULL	LIF
+query3612	finger	L	L [evf:anatomy]	NULL	LIF
+query3590	govern,flag	L	L [syn:reign]	L [syn:banner]	LIF
+query3366	inherited	L	L M	NULL	LIF
+query1146	bible	L	L [evf:religion]	NULL	LIF
+query3500	woke up in the morning	L	L M	NULL	LIF
+query1670	title,return	L	L [syn:heading]	L	LIF
+query1951	nosebleed	L	L	NULL	LIF
+query1672	twin	L	L [hyp:person]	NULL	LIF
+query1989	fireworks	L	L	NULL	LIF
+query2958	albino	L	L M [hyp:person]	NULL	LIF
+query2971	smokers	L	L M [evf:tobacco]	NULL	LIF
+query1691	king,song	L	L [syn:monarch]	L	LIF
+query3397	prostitution	L	L [syn:whoredom]	NULL	LIF
+query4286	braid hair	L	L	NULL	LIF
+query1941	wall	L	L	NULL	LIF
+query3288	comb	L	L [hyp:toiletry]	NULL	LIF
+query2899	militia	L	L	NULL	LIF
+query2976	State house	L	L [syn:presidential residence]	NULL	LIF
+query1023	letter,condolences	L	L	L	LIF
+query2023	institution,seminar	L	L [hyp:organization]	L	LIF
+query3159	club,entertainment	L	L [syn:league]	L	LIF
+query1728	temporary work	L	L	NULL	LIF
+query3018	axe	L	L [evf:tool]	NULL	LIF
+query1864	interpreter	L	L	NULL	LIF
+query1340	court	L	L [evf:law]	NULL	LIF
+query1688	bucket	L	L [hyp:container]	NULL	LIF
+query1866	editor	L	L	NULL	LIF
+query1519	well,village	L	L [hyp:water source]	L	LIF
+query1871	Chinese culture	L	L	NULL	LIF
+query1729	e-mail	L	L	NULL	LIF
+query3934	smell	L	L [syn:odor]	NULL	LIF
+query1885	talent,artist	L	L [syn:ability]	L	LIF
+query1718	clap	L	L [syn:applaud]	NULL	LIF
+query1681	license	L	L [hyp:permission]	NULL	LIF
+query1230	spoon	L	L [hyp:utensils]	NULL	LIF
+query3402	decorate,lady	L	L [syn:beautify]	L [syn:woman]	LIF
+query3636	private part	L	L [evf:genitalia]	NULL	LIF
+query3113	breakfast	L	L	NULL	LIF
+query2503	kitchen	L	L	NULL	LIF
+query3290	desk	L	L [hyp:furniture]	NULL	LIF
+query1993	gasoline	L	L	NULL	LIF
+query4047	emotion,forgiveness	L	L [syn:mental state]	L [syn:pardon]	LIF
+query3041	friend,farm	L	L [hyp:person]	L [syn:cultivated land]	LIF
+query716	strengthen,bond	L	L	L	LIF
+query1785	window	L	L	NULL	LIF
+query3517	bid for	L	L [syn:tender for]	NULL	LIF
+query1338	debt,debate	L	L	L	LIF
+query3977	hub,commerce	L	L [syn:focal point]	L [syn:buying and selling]	LIF
+query701	healthcare	L	L	NULL	LIF
+query4001	labor force,percentage	L	L [hyp:employment]	L	LIF
+query1335	bring change	L	L	NULL	LIF
+query2025	agricultural policy	L	L	NULL	LIF
+query1982	makeup	L	L [syn:cosmetics]	NULL	LIF
+query1725	sister,morning	L	L [hyp:sibling]	L	LIF
+query1496	media,English	H	C	L	LIF
+query1487	money,Kikuyu	H	C	L	LIF
+query409	business,poverty	H	C [syn:commerce]	L	LIF
+query1520	attack,Facebook	H	C	L	LIF
+query1040	slavery,donkey	H	C	L [hyp:animal]	LIF
+query2024	beauty,scissors	H	C	L	LIF
+query3747	cell,stigma	H	L [evf:biology]	C	LIF
+query3758	flood,assistance	H	L [syn:inundation]	C	LIF
+query1887	China,manufacturing	H	L	C [hyp:industry]	LIF
+query3903	defense,relative	H	L	C	LIF
+query1921	Kagera,natural disaster	H	L	C	LIF
+query4275	fight for justice,legal	H	L [syn:fight for fairness]	C	LIF
+query1018	fast,Ramadan	H	C [syn:abstain]	L	LIF
+query3784	peanut,snack	H	L	C	LIF
+query1918	Chama cha Mapinduzi,mining	H	L	C [syn:excavation]	LIF
+query3345	alcohol,driving	H	L	C [syn:operating motor vehicle]	LIF
+query3692	colors,bolt	H	C [syn:pigment]	L [syn:screw]	LIF
+query3737	abroad,laborer	H	L [syn:overseas]	C	LIF
+query743	social media,university student	H	C	L	LIF
+query1977	dermatology,juice	H	C	L [evf:fruit extract]	LIF
+query1950	witchcraft,lizard	H	C	L [hyp:animal]	LIF
+query3721	orphan,school	H	L	C	LIF
+query1782	Mwanza,fishing	H	L	C	LIF
+query1568	Sumbawanga,hospital	H	L	C	LIF
+query2011	peace,Muslim	H	C [syn:harmony]	L	LIF
+query3950	industrial sector,economic problem	H	L	C	LIF
+query1779	Morogoro,banking	H	L	C	LIF
+query4366	egg,nutrition	H	L [hyp:food]	C	LIF
+query4131	Temeke,living standard	H	L	C	LIF
+query3805	customs,merchandise	H	L [hyp:government agency]	C	LIF
+query1219	branches of government	C	C EX	NULL	LIF
+query1332	rooms of a house	C	C EX	NULL	LIF
+query1744	AIDS	C	C [hyp:disease]	NULL	LIF
+query3418	parking facility	C	C EX	NULL	LIF
+query2630	election do-over	C	C	NULL	LIF
+query3060	dairy product	C	C EX	NULL	LIF
+query4162	sanitation	C	C [syn:cleanliness]	NULL	LIF
+query4160	skin bleaching	C	C	NULL	LIF
+query3201	root vegetable	C	C EX	NULL	LIF
+query3054	passenger aircraft	C	C EX	NULL	LIF
+query3604	citrus fruit	C	C EX	NULL	LIF
+query4177	birth control	C	C	NULL	LIF
+query2622	amending the constitution	C	C	NULL	LIF
+query1967	chemicals,mango	H	C	L [hyp:fruit]	LIF
+query4309	lorry,life	H	L [syn:truck]	C [syn:existence]	LIF

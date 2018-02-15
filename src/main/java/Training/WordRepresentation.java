@@ -27,12 +27,14 @@ import java.util.*;
 public class WordRepresentation {
     private static Logger log;
     private static boolean Train;
-    private static String modelPath;
+    private static String modelPath, extendQueryPath, originalQueryPath;
 
     static void init(){
         log = LoggerFactory.getLogger(WordRepresentation.class);
         Train = false;
         modelPath = "MTDoc/w2vmodel.txt";
+        extendQueryPath = "MTDoc/query_list_parsed_ES_extend.txt";
+        originalQueryPath = "MTDoc/query_list_parsed_ES.txt";
     }
     public static void main(String[] args) throws IOException{
         // TODO Auto-generated method stub
@@ -48,12 +50,21 @@ public class WordRepresentation {
                 log.info("Please Train First!");
                 System.exit(0);
             }
-            W2VModel.testW2v(modelPath);
+            W2VModel.testW2v(modelPath, originalQueryPath, extendQueryPath, log);
         }
     }
 }
 
 class W2VModel{
+
+    static final String OOV = ".";
+    static final String COMMA = ",";
+    static final int NEARWORDS = 3;
+
+    /**
+     * Train Word2Vec mode.
+     */
+
     public static void trainW2v(String inputFile, Logger log) throws IOException{
         log.info("Load & Vectorize Sentences....");
 
@@ -87,18 +98,77 @@ class W2VModel{
         word2vec.fit();
 
         String modelPath = inputFile.substring(0, inputFile.lastIndexOf('/')) + "/w2vmodel.txt";
-        System.out.println(modelPath);
+
+        log.info("writing model file to path :" + modelPath);
+
         WordVectorSerializer.writeWord2VecModel(word2vec, modelPath);
 
         log.info("Finished");
     }
 
-    public static void testW2v(String modelPath) throws IOException{
+
+    /**
+     * Load trained Word2Vec model, and call extendQuery to write out the extended query file.
+     *
+     * */
+
+
+    public static void testW2v(String modelPath, String originalQueryPath, String extendQueryPath, Logger log) throws IOException {
         Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel(new ClassPathResource(modelPath)
                 .getFile()
                 .getAbsolutePath());
-        Collection<String> res = word2Vec.wordsNearest("is", 10);
-        System.out.println(word2Vec.hasWord("is"));
-        System.out.println(res.toString());
+        extendQuery(originalQueryPath, extendQueryPath, word2Vec, log);
+    }
+
+    public static void extendQuery(String originalQueryPath, String extendQueryPath, Word2Vec word2Vec, Logger log) throws IOException{
+        ClassPathResource srcPath = new ClassPathResource(originalQueryPath);
+        if(! srcPath.getFile().exists()){
+            log.info("Please import query file (Parsed) for extension.");
+            System.exit(0);
+        }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(srcPath.getFile())));
+
+        File extendQueryFile = new File(srcPath.getFile().getParentFile().getParent() + "/" + extendQueryPath);
+        FileWriter fw = new FileWriter(extendQueryFile);
+
+        String line = "";
+        int countOOV = 0;
+
+        while((line = br.readLine()) != null){
+            if(line.startsWith("query_id")){
+                continue;
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            String[] q = line.split("\t");
+            String id = q[0], words = q[1];
+            String[] w = words.split(COMMA); // how to deal with phrases?
+
+            sb.append(id).append("\t");
+
+            for(String curWord : w){
+                Collection<String> wordList = new ArrayList();
+
+                if(word2Vec.hasWord(curWord)){
+                    wordList = word2Vec.wordsNearest(curWord, NEARWORDS);
+                }
+                else{ //OOV
+                    wordList = word2Vec.wordsNearest(OOV, NEARWORDS);
+                    countOOV++;
+                }
+
+                sb.append(curWord).append(COMMA);
+                for(String temp : wordList) sb.append(temp).append(COMMA);
+            }
+
+            sb.deleteCharAt(sb.length() - 1);
+            fw.write(sb.toString() + "\n");
+        }
+
+        fw.close();
+        br.close();
+
     }
 }
