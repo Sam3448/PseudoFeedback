@@ -169,6 +169,6 @@ class W2VModel{
 
         fw.close();
         br.close();
-
+        System.out.println(countOOV);
     }
 }
