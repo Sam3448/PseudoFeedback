@@ -5,6 +5,7 @@ package Training;
  * Created by SamZhang on 2/15/18.
  */
 import org.apache.http.HttpHost;
+import org.datavec.api.util.ClassPathResource;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RestClient;
@@ -15,52 +16,100 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
 public class ES {
 
-    private static final int RESULT_SIZE = 20;
+    private static final int RESULT_SIZE = 5;
 
-    public static void ESsearch(String doc_index, String doc_type, String field, String query) throws IOException{
-        /*
-        * Search setup
-        * */
+    /**
+     * Input query file, and search for the whole file
+     * */
+
+    public static void ESsearchQueryFile(String extendQueryPath, String queryResultPath,
+                                         String doc_index, String doc_type, String field) throws IOException{
+        //Get query file
+        ClassPathResource srcPath = new ClassPathResource(extendQueryPath);
+        File extendQueryFile = srcPath.getFile();
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(extendQueryFile)));
+        String line = "";
+
+        //Get output result file
+        FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultPath));
+
+        //Get client
         RestClient lowLevelRestClient = RestClient.builder(
                 new HttpHost("localhost", 9200, "http")).build();
-
         RestHighLevelClient client = new RestHighLevelClient(lowLevelRestClient);
 
-        SearchRequest searchRequest = new SearchRequest(doc_index);
-        searchRequest.types(doc_type);
+        while((line = br.readLine()) != null){
+            //Parse query
+            String[] curQuery = line.split("\t");
+            String queryId = curQuery[0];
+            String queryString = curQuery[1];
 
-        QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(field, query);
+            //Execute search for one query
+            SearchResponse searchResponse = ESsearch(client, doc_index, doc_type, field, queryString);
 
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(matchQueryBuilder);
-        searchSourceBuilder.size(RESULT_SIZE);
+            //Write out results
+            SearchHits hits = searchResponse.getHits();
+            System.out.println("Total Number of Hits :\t" + hits.getTotalHits());
 
-        searchRequest.source(searchSourceBuilder);
+            fw.write(queryId + "\n");
 
-        /*
-        * Response from ES
-        * */
+            for(SearchHit hit : hits.getHits()){
+                String id = hit.getId();
+                String content = hit.getSourceAsString();
+                float score = hit.getScore();
 
-        SearchResponse searchResponse = client.search(searchRequest);
-
-        SearchHits hits = searchResponse.getHits();
-        System.out.println("Total Number of Hits :\t" + hits.getTotalHits());
-
-        int count = 0;
-        for(SearchHit hit : hits.getHits()){
-            String id = hit.getId();
-            String content = hit.getSourceAsString();
-            float score = hit.getScore();
-
-            System.out.println("Document Number :\t" + ++count);
-            System.out.println("Document Id :\t" + id + "\t with score :\t" + score);
-            System.out.println(content + "\n");
+                fw.write("\t" + id + "\t" + score  + "\t\n");
+            }
         }
 
         lowLevelRestClient.close();
+        fw.close();
+        br.close();
+    }
+
+    /**
+     * Use ES searching for one line of query
+     * */
+
+    public static SearchResponse ESsearch(RestHighLevelClient client,
+                                          String doc_index, String doc_type,
+                                          String field, String query) throws IOException{
+
+        /*
+        * Search setup
+        * */
+
+        //Build query
+        String[] queryArr = new String[1];
+        if(query.contains(",")) queryArr = query.split(",");
+        else queryArr[0] = query;
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < queryArr.length; i++){
+            sb.append(queryArr[i]).append((i == queryArr.length ? "" : " OR "));
+        }
+
+        QueryBuilder queryBuilder = QueryBuilders.matchQuery(field, sb.toString());
+        System.out.println("*************" + queryBuilder.toString());
+
+        //Use querybuilder to define searchSourceBuilder
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(queryBuilder);
+        searchSourceBuilder.size(RESULT_SIZE);
+
+        //Get search request
+        SearchRequest searchRequest = new SearchRequest(doc_index);
+        searchRequest.types(doc_type);
+
+        //Send search request
+        searchRequest.source(searchSourceBuilder);
+
+        //return the result of search, synchronize
+        return client.search(searchRequest);
     }
 }

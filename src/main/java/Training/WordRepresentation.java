@@ -27,31 +27,38 @@ public class WordRepresentation {
     private static Logger log;
     private static boolean Train;
     private static String modelPath, extendQueryPath, originalQueryPath;
+    private static String queryResultPath;
 
-    private static String doc_index, doc_type, field, query;
+    private static String doc_index, doc_type, field;
 
     static void init(){
         log = LoggerFactory.getLogger(WordRepresentation.class);
+
         /*
         * Word2Vec Parameters
         * */
+
         Train = false;
         modelPath = "MTDoc/w2vmodel.txt";
         extendQueryPath = "MTDoc/query_list_parsed_ES_extend.txt";
         originalQueryPath = "MTDoc/query_list_parsed_ES.txt";
+        queryResultPath = "MTDoc/query_list_ES_result.txt";
 
         /*
         * ES Parameters
         * */
+
         doc_index = "sw-en-analysis";
         doc_type = "doc";
         field = "gold";
-        query = "CCM";
     }
     public static void main(String[] args) throws IOException{
         // TODO Auto-generated method stub
+        //log setup
         BasicConfigurator.configure();
+
         init();
+
         if(Train) {
             PreProcessing.processing();
             String[] sw_enFile = PreProcessing.fileOutput();
@@ -62,10 +69,10 @@ public class WordRepresentation {
                 log.info("Please Train First!");
                 System.exit(0);
             }
-            W2VModel.testW2v(modelPath, originalQueryPath, extendQueryPath, log);
-        }
+            W2VModel.loadAndTestW2v(modelPath, originalQueryPath, extendQueryPath, log);
 
-        ES.ESsearch(doc_index, doc_type, field, query);
+            ES.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
+        }
     }
 }
 
@@ -128,12 +135,22 @@ class W2VModel{
      * */
 
 
-    public static void testW2v(String modelPath, String originalQueryPath, String extendQueryPath, Logger log) throws IOException {
+    public static void loadAndTestW2v(String modelPath, String originalQueryPath, String extendQueryPath, Logger log) throws IOException {
         Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel(new ClassPathResource(modelPath)
                 .getFile()
                 .getAbsolutePath());
         extendQuery(originalQueryPath, extendQueryPath, word2Vec, log);
     }
+
+    /**
+    * Extend query file based on the model trained by Word2Vec.
+    * Now only look for nearest words for each query.
+    *
+    * Problems needs to be solved:
+    *   1. How to deal with phrases
+    *   2. How to deal with OOVs
+    *
+    * */
 
     public static void extendQuery(String originalQueryPath, String extendQueryPath, Word2Vec word2Vec, Logger log) throws IOException{
         ClassPathResource srcPath = new ClassPathResource(originalQueryPath);

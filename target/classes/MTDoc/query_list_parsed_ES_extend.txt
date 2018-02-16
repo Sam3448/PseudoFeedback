@@ -4,297 +4,297 @@ query3530	blood pressure
 query3637	broadcasted live
 query3772	lungs
 query1236	ankle bells
-query3011	spy,bomb,attacks,saved,petition
+query3011	spy,bomb,quiet,punishment,mistake
 query482	road accident
-query3532	reduce,eliminate,ease,grow,accident,incident,style,poured
+query3532	reduce,avoid,solve,ease,accident,grand,incident,attack
 query478	British colonies
 query1997	city council
-query1528	Bungoma,factory,kiswaga,highlands,catering
+query1528	Bungoma,factory,beer,matina,companys
 query1930	rebuild
-query1824	sustainability,motorcycle,kv,stephano,posing
-query3993	commit suicide,gun,foolish,walked,girl
-query1637	Al Bashir,president,fourth,kiir,jakaya
+query1824	sustainability,motorcycle,clarification,symbol,cutting
+query3993	commit suicide,gun,foolish,bribe,hole
+query1637	Al Bashir,president,term,fourth,jakaya
 query1980	sunflower oil
-query1899	crown,rocks,speeches,convoy
+query1899	crown,rocks,besides,cassava
 query1916	garbage,ladder
-query2012	church,catholic,golden,marriage
-query1412	publicity,propagation,ideology,nnauye,protest,mid,ball,era
+query2012	church,catholic,priest,golden
+query1412	publicity,ideology,propagation,nnauye,protest,circulating,relevant,consideration
 query1904	Red Cross
 query1639	Ugandan
-query1539	Brazil,refugee,nyarugusu,shija,kasulu
+query1539	Brazil,refugee,nyarugusu,kasulu,loliondo
 query1554	Shimoni,political refugees
-query1056	poem,moments,shortly,book
-query1820	breakfast,dam,sheet,toyota
+query1056	poem,shortly,reading,baraka
+query1820	breakfast,brand,toyota,sponsoring
 query1903	snow
-query1634	port,route,ohio,kariakoo
-query1424	library,cleaning,hostels,mchikichini
+query1634	port,kariakoo,ocean,mwenge
+query1424	library,ruaha,hotels,five-day
 query1648	arrow
-query3609	peace treaty,law,laws,regulations,openness
+query3609	peace treaty,law,control,laws,openness
 query1908	cockroach
-query1053	foolish,gun,rumor,girl
+query1053	foolish,feels,sharp,gun
 query1617	bottle
-query375	news,reports,newspapers,noise,weather,population,conservation,rea
-query483	by-election,bukombe,sumbawanga,rally
+query375	news,provisions,malaria,facebook,weather,animal,rea,distribution
+query483	by-election,kalenga,arumeru,busega
 query3485	hammer
 query3998	made tired
-query1408	picture,pictured,press,journalists,hotel,hyatt,regency,serena
+query1408	picture,pictured,press,journalists,hotel,hyatt,regency,milimani
 query1626	sugar factory
-query3539	invitation,remarks,three-day,arriving,formal,gharib,mpoto,bilal
+query3539	invitation,closing,celebration,italian,formal,angella,symbolize,imf
 query2270	fickle
-query1641	orange,wisdom,calmness,advertise,fully
+query1641	orange,wisdom,really,completely,shock
 query4035	abstained
 query1532	Singapore,pig
-query1901	soccer,yanga,england,premier
-query1443	club,yanga,coach,team,match,game,matches,standings
+query1901	soccer,yanga,england,azam
+query1443	club,yanga,team,fc,match,game,hosts,ruvu
 query1057	improve transportation
 query2022	bilharzia
-query1802	rent,compensation,fifty,reasonable,house,state,sub-office,lumumba
+query1802	rent,costed,compensation,tenders,house,state,sub-office,hall
 query1852	horse
-query1787	shield,hosts,defending,game
-query3564	planet,hilal,bella,ford
-query2985	favor,oppression,blocks,decision
-query1964	motorcycle,kv,stephano,posing
-query3261	band,singer,musician,yamoto
-query1405	drugs,mosquitoes,drug,types
+query1787	shield,hosts,match,azam
+query3564	planet,zainabu,pccb,placing
+query2985	favor,policies,equality,religious
+query1964	motorcycle,clarification,symbol,cutting
+query3261	band,star,ffu,taarab
+query1405	drugs,diseases,types,kinds
 query3793	donut
-query480	gun,foolish,walked,girl
-query468	coffee,installing,phone,tdl
-query3515	stage,playing,seasons,quarter,South Africa
-query2015	ghost,allocated,fees,tackle
+query480	gun,foolish,bribe,hole
+query468	coffee,paper,without,makes
+query3515	stage,consecutive,leg,round,South Africa
+query2015	ghost,dawasco,created,transporting
 query3814	cheetah
-query4344	fertilize,soil,preserve,brain,enemies
+query4344	fertilize,soil,disputes,farming,brain
 query1635	paradise
 query1465	public enterprise
 query1792	ditch
-query1910	tire,pose,cross,talk
+query1910	tire,kill,communicate,truly
 query1816	pineapple
-query1999	municipal,mayor,ilala,municipality
+query1999	municipal,mayor,ilala,mkuranga
 query1541	Sahara,infant mortality
-query4030	matches,uefa,championship,match
-query1631	face,dug,trouble,encounter,earth,usage,throughout,share
-query1444	pipes,incomes,funds,permits,pressure,developing,advertising,talents
+query4030	matches,games,championship,uefa
+query1631	face,seem,solved,stay,earth,heaven,lets,yourselves
+query1444	pipes,forest,include,individuals,pressure,hurting,color,loopholes
 query3049	root
 query1954	deforestation
 query2000	deputy mayor
 query2684	national team
-query3700	earthen cooking pot,water,electricity,construction,houses
+query3700	earthen cooking pot,water,infrastructure,catering,electricity
 query2908	toothless person
 query2021	elephantiasis
-query1644	crisis,indicated,prior,delay,solution,inability,extent,prove
-query1419	small group,party,ukawa,chadema,cadre
-query472	factory,kiswaga,highlands,catering,strike,affair,lottery,blow
+query1644	crisis,clearly,announcements,argument,solution,extent,allows,license
+query1419	small group,party,chadema,cadre,ukawa
+query472	factory,beer,matina,companys,strike,sweet,predicted,spouse
 query3044	childhood
-query2234	pilot,disturbance,user,consumer
+query2234	pilot,aircraft,agribusiness,measuring
 query2002	ledger
 query1817	rabbit
 query484	stock exchange
-query1638	bishop,resurrection,archbishop,louis
+query1638	bishop,josephat,gwajima,louis
 query1406	vice president
 query1421	the most important thing
-query1645	knife,suicide,medal,sweater
-query1404	fish,disturbance,necessary,pollution
-query1988	bishop,resurrection,archbishop,louis
+query1645	knife,bought,bomb,video
+query1404	fish,respective,reserved,mothers
+query1988	bishop,josephat,gwajima,louis
 query1851	pork
-query1409	ambassador,mulamula,liberata,sefue,camera,emerges,woman,hole
-query1975	marijuana,acres,saga,rain
-query2020	worms,disease,norm,articles
+query1409	ambassador,sefue,ombeni,mulamula,camera,missed,stolen,nay
+query1975	marijuana,gold,tusker,recovering
+query2020	worms,blind,severally,millions
 query3518	congratulation,USA
-query1647	salute,enjoying,pointing,knot
+query1647	salute,kikwetes,mart,mavunde
 query1054	secret service
 query1096	flashlight
 query3360	museums
-query3835	telescope,evaluation,resolutions,improvement,protection
-query1924	albinos,controlled,weaknesses,efd,clinic,emergency,facility,gathering
-query1461	Mogadishu,farming,farmers,self,attract
-query1086	imports,weeds,steps,concern,chalk
+query3835	telescope,evaluation,announcement,deficit,execution
+query1924	albinos,reasons,controlled,dressing,clinic,pilot,bifida,spina
+query1461	Mogadishu,farming,treatments,self,low-income
+query1086	imports,switching,powerful,meanwhile,chalk
 query3905	Russia,sanctions
 query1600	Babati,dairy production
 query4357	green revolution,imperialism
-query1850	HPV,circumcision,tested,referred,mature
+query1850	HPV,circumcision,bear,platforms,divided
 query4103	tear gas,dispersing crowds
 query1551	Kakamega,political campaigning
-query1572	Tunduma,embezzlement,extraction,quantity,proper
-query1981	cancer,waste,breast,beans,skin,disability,certain,inferior
-query1244	dinner,television,equip,runs,cup,championship,standings,lyon
-query1797	poverty,produce,grow,ease,milk,sins,older,lie
-query4301	intersection,accident,incident,style,poured
-query1933	boxing,ibf,tpbc,veteran,shoes,concern,benefiting,fights
+query1572	Tunduma,embezzlement,possession,suspicion,parts
+query1981	cancer,breast,cervical,screening,skin,disability,clothes,complications
+query1244	dinner,sound,musical,concert,cup,championship,finals,tournament
+query1797	poverty,grow,economically,self,milk,meat,struggle,smoke
+query4301	intersection,accident,grand,incident,attack
+query1933	boxing,german,businessman,veteran,shoes,advertising,mothers,debts
 query1537	Clinton,apology
-query1847	enemy,ours,truly,suitable,fly,criticizing,promoted,stating
-query1913	pollution,gain,availed,particular,needle
-query493	transportation,alternative,accountability,forests,boat,summary,agreeing,loud
-query2566	Kisumu,funeral,ancient,seating,sixth
-query4096	sugar factory,produce,attract,generate,creative
-query1943	disability,skin,sick,complications,crocodile
-query4406	brick,construct,acquire,afford,commit
-query1014	building,capacity,dormitories,improving,Ummy Mwalimu
-query1083	education,vocational,learning,mathematics,make noise
-query2620	liberation,completion,establishment,seventh,Chad
-query1814	flooding,dressing,reasons,causing,goat,gift,dummy,cash
-query1927	India,weapon,largely,answers,eyes
-query3901	terms of reference,investigation,obvious,greatest,agent
+query1847	enemy,calmness,forward,satisfy,fly,airplanes,signal,democrat
+query1913	pollution,unnecessary,color,treatments,needle
+query493	transportation,organs,effectiveness,toilets,boat,recorded,loud,shot
+query2566	Kisumu,funeral,kikwajuni,majengo,ancient
+query4096	sugar factory,produce,motivate,attract,lift
+query1943	disability,skin,infected,complications,crocodile
+query4406	brick,construct,eliminate,restore,purchase
+query1014	building,construction,processing,statistical,Ummy Mwalimu
+query1083	education,vocational,provision,training,make noise
+query2620	liberation,announcement,establishment,existence,Chad
+query1814	flooding,cultivation,blocked,solved,goat,gift,t-shirt,presentation
+query1927	India,weapon,largely,judgment,aunt
+query3901	terms of reference,investigation,biggest,content,controlling
 query1652	grandparent
-query1178	poultry,performing,bruyne,currently
-query498	ocean,orphanage,plant,blue
+query1178	poultry,popular,yaya,joachim
+query498	ocean,hotels,sun,pipeline
 query4144	salary increase
 query1214	the eye
 query4139	white clothing
 query4000	combating malaria
 query1331	geometric shapes
 query3481	major appliances
-query3217	courts,ubongo,upper,cleanup
+query3217	courts,neighborhood,library,nachingwea
 query4154	accident insurance
 query4137	child vaccination
 query2032	women's soccer
 query3292	car fuels
 query4148	selling cows
-query1521	seminar,forum,workshop,one-day
-query3524	black,injury,record,half,color,reliable,creatures,healthy
+query1521	seminar,workshop,one-day,forum
+query3524	black,argentina,record,beat,color,evade,healthy,dressing
 query1030	under the bed
-query1721	afternoon,evening,morning,namfua
-query1495	pregnant,eggs,physical,eating,neighbor,withstand,airbus,lead
-query2933	increase,bring,improve,economically,price,relief,mandatory,weight
-query3647	cashew,bifida,braille,spina
-query1865	entrepreneurship,enabling,teaching,expanding
-query2017	lawyer,spokesperson,founder,interim
-query993	speech,shortly,official,arrival,death,killing,commandment,list
-query1598	elephant,supports,deed,worker
-query2725	chemist,simbeye,boa,authoritys
-query2731	bacteria,infected,salary,discovered
-query2959	finally,mitego,granted,broken,Bukoba
-query1745	Nyanza,country,ensuring,participation,addition
-query1974	mirror,killer,hot,unemployment
+query1721	afternoon,evening,morning,boma
+query1495	pregnant,causing,eating,brings,neighbor,wrong,stable,impossible
+query2933	increase,reduce,improve,increasing,price,probability,failure,solution
+query3647	cashew,mission,facilitate,equipments
+query1865	entrepreneurship,consumers,capacity,empower
+query2017	lawyer,spokesperson,ladislaus,takukuru
+query993	speech,official,l,arrival,death,killing,father,album
+query1598	elephant,industrialized,compensation,initiative
+query2725	chemist,controller,principal,cag
+query2731	bacteria,mention,demonstrated,donors
+query2959	finally,sentenced,broken,brazilian,Bukoba
+query1745	Nyanza,country,implementing,helping,economics
+query1974	mirror,touching,command,undertaking
 query988	police report
 query1985	shadow
 query2447	cultural heritage
-query1707	warning,samaritans,rushed,nay,catalog
+query1707	warning,camera,strong,permit,catalog
 query3120	shoulder to shoulder
-query1960	gun,foolish,walked,girl,defense,lands,settlements,auditor
+query1960	gun,foolish,bribe,hole,defense,lands,settlements,protocol
 query3215	predecessors
 query2498	fisherman
 query3583	beautiful girl,Kenya
-query2031	property,destruction,pockets,abuse,bank,nbc,kinabo,nmb
-query3390	green,masaharu,alphonce,theresia
+query2031	property,destruction,sale,understanding,bank,crdb,nmb,tib
+query3390	green,neighboring,statistical,shed
 query1868	fraudulent
-query1683	kilometer,twiga,supervisor,evangelistic
+query1683	kilometer,meters,walter,renovating
 query1858	national symbol
-query2956	potatoes,eating,legs,twins
+query2956	potatoes,fall,yourself,cooked
 query3748	stalk
-query4183	recently,arrested,opened,closed,visit,attend,receive,cross
-query3008	coordinator,representative,gst,founder,celebration,three-day,one-day,occasion
-query1719	back,too,married,wait
+query4183	recently,mtaka,opened,arrested,visit,tour,introduce,inspect
+query3008	coordinator,founder,geological,representative,celebration,commemoration,bonanza,celebrations
+query1719	back,wait,youre,went
 query1491	delicate
 query1984	the American dream
 query1036	rat
 query982	living with diabetes
 query728	guest of honor
 query3736	fugitives
-query984	sugar,mtibwa,fc,england
+query984	sugar,fc,mtibwa,shooting
 query2003	vitamin
-query3309	name,sound,bicycle,inflammatory,girl,suffered,break,simple
+query3309	name,fan,son,yellow,girl,fiancée,chapter,difference
 query1713	bread
 query4040	cheese
 query1501	spit
-query1714	body,eyes,percentage,standard,respect,sit,discover,appreciate
-query1693	banana,ukonga,bahari,salaams
-query1853	furniture,trend,specifically,establishment
+query1714	body,eyes,amazing,beautiful,respect,submit,find,protect
+query1693	banana,ukonga,outskirts,plaza
+query1853	furniture,rounds,importance,malaria
 query2006	potassium
-query3612	finger,boyfriend,husband,car
-query3590	govern,flag,minor,presidency,republican
+query3612	finger,eye,message,car
+query3590	govern,flag,nomination,presidency,reviewing
 query3366	inherited
-query1146	bible,odinga,supports,hacked
+query1146	bible,placed,buyer,spouse
 query3500	woke up in the morning
-query1670	title,clearly,waited,album,return,hold,allowed,beyond
+query1670	title,clearly,waited,argentina,return,resign,refused,hold
 query1951	nosebleed
-query1672	twin,granted,kept,bought
+query1672	twin,withdrawn,gone,admitting
 query1989	fireworks
-query2958	albino,wiz,disorders,disability
+query2958	albino,disorders,disability,skin
 query2971	smokers
-query1691	king,vi,morocco,laid,song,video,album,featured
+query1691	king,vi,morocco,joachim,song,video,album,girlfriend
 query3397	prostitution
 query4286	braid hair
-query1941	wall,participant,honest,prove
+query1941	wall,thing,surrender,attractive
 query3288	comb
-query2899	militia,militants,killed,robbers
+query2899	militia,drawn,attack,recent
 query2976	State house
-query1023	letter,bond,jack,bit,condolences,elect,requiring,insulting
-query2023	institution,initiatives,strategy,theme,seminar,forum,workshop,one-day
-query3159	club,yanga,coach,team,entertainment,manufactured,concerts,singers
+query1023	letter,decision,mwasabite,bond,condolences,greet,elect,canadian
+query2023	institution,shamte,purchasing,research,seminar,workshop,one-day,forum
+query3159	club,yanga,team,fc,entertainment,entertainments,brands,alcohol
 query1728	temporary work
 query3018	axe
 query1864	interpreter
-query1340	court,magistrate,judge,appeal
-query1688	bucket,liter,card,prize
-query1866	editor,rukia,fisoo,multichoice
-query1519	well,such,so,significantly,village,mufindi,karatu,ward
+query1340	court,appeal,gifted,statement
+query1688	bucket,confirmation,prize,parent
+query1866	editor,rukia,ineke,mhando
+query1519	well,such,so,prominent,village,ward,iringa,babati
 query1871	Chinese culture
 query1729	e-mail
 query3934	smell
-query1885	talent,ford,chege,renowned,artist,star,flavor,musician
+query1885	talent,movie,star,winger,artist,star,bongo,rapper
 query1718	clap
-query1681	license,stable,seems,patient
+query1681	license,solution,individual,quickly
 query1230	spoon
-query3402	decorate,lady,salma,presidents,wife
+query3402	decorate,lady,salma,mama,wife
 query3636	private part
-query3113	breakfast,dam,sheet,toyota
-query2503	kitchen,legs,friend,else
-query3290	desk,sebastian,superintendent,mary
+query3113	breakfast,brand,toyota,sponsoring
+query2503	kitchen,maybe,knew,ive
+query3290	desk,sebastian,fatma,chacha
 query1993	gasoline
-query4047	emotion,forgiveness,hurt,cant,annoyed
-query3041	friend,tells,else,whether,farm,lights,seized,argument
-query716	strengthen,manage,accountability,generations,bond,withheld,nay,stayed
-query1785	window,lyon,sunderland,leicester
+query4047	emotion,forgiveness,silent,fit,anything
+query3041	friend,truly,thinks,tells,farm,style,sand,beauties
+query716	strengthen,commitment,convince,encourage,bond,mitego,benz,nay
+query1785	window,vpl,defending,uefa
 query3517	bid for
-query1338	debt,costed,contributed,lasted,debate,draft,polls,condemning
-query3977	hub,commerce,nbc,singili,ulanga
-query701	healthcare,provide,providing,grants
-query4001	labor force,percentage,covered,distance,weaknesses
+query1338	debt,costed,collected,grant,debate,advertisement,poll,draft
+query3977	hub,commerce,mhina,mgonja,melu
+query701	healthcare,spina,bifida,reduce
+query4001	labor force,percentage,waited,resembles,hunger
 query1335	bring change
 query2025	agricultural policy
 query1982	makeup
-query1725	sister,cake,bag,carrying,morning,afternoon,evening,regency
-query1496	media,writers,websites,concerning,English
-query1487	money,directly,buy,balance,Kikuyu
-query409	business,markets,pockets,market,poverty,produce,grow,ease
-query1520	attack,attacks,removed,confessed,Facebook
+query1725	sister,cake,medal,renowned,morning,afternoon,evening,oclock
+query1496	media,writers,offered,networks,English
+query1487	money,tap,luku,directly,Kikuyu
+query409	business,markets,ict,aspects,poverty,grow,economically,self
+query1520	attack,remained,claiming,theo,Facebook
 query1040	slavery,donkey
-query2024	beauty,producer,pillars,jokate,scissors
-query3747	cell,sim,cheaper,nokia,stigma
-query3758	flood,noting,challenged,platform,assistance,satisfy,careless,manage
-query1887	China,manufacturing,apple,soft,pepsi
-query3903	defense,lands,settlements,auditor,relative
+query2024	beauty,producer,label,famous,scissors
+query3747	cell,cheaper,pesa,mobile,stigma
+query3758	flood,gratitude,jerseys,signal,assistance,abandon,eliminate,intended
+query1887	China,manufacturing,vision,apple,sabmiller
+query3903	defense,lands,settlements,protocol,relative
 query1921	Kagera,natural disaster
-query4275	fight for justice,legal,rights,guaranteed,actions
-query1018	fast,easier,anytime,secure,Ramadan
+query4275	fight for justice,legal,basic,income,rights
+query1018	fast,easier,low-income,smartphones,Ramadan
 query3784	peanut,snack
-query1918	Chama cha Mapinduzi,mining,supply,mineral,statoil
-query3345	alcohol,attractive,pregnancy,little,driving,oppressed,treating,personally
-query3692	colors,tribe,skin,odinga,bolt
-query3737	abroad,evade,themselves,prefer,laborer
+query1918	Chama cha Mapinduzi,mining,exploration,mineral,supply
+query3345	alcohol,treatments,physical,fruits,driving,brothers,bad,articles
+query3692	colors,associated,faced,meanings,bolt
+query3737	abroad,families,alcohol,citizenship,laborer
 query743	social media,university student
-query1977	dermatology,juice,evade,earning,pollution
-query1950	witchcraft,danger,teachings,taxation,lizard
+query1977	dermatology,juice,accordingly,drug,improvements
+query1950	witchcraft,salt,challenge,mothers,lizard
 query3721	orphan,school,motamburu,primary,schools
-query1782	Mwanza,fishing,reducing,fishermen,chemicals
-query1568	Sumbawanga,hospital,muhimbili,referral,bugando
-query2011	peace,stability,harmony,tranquility,Muslim
+query1782	Mwanza,fishing,gap,fishermen,blood
+query1568	Sumbawanga,hospital,muhimbili,referral,muhumbili
+query2011	peace,tranquility,stability,pray,Muslim
 query3950	industrial sector,economic problem
-query1779	Morogoro,banking,engages,branches,telephone
-query4366	egg,nutrition,travelers,slaughterhouses,highway
+query1779	Morogoro,banking,excellence,shule,nmb
+query4366	egg,nutrition,stakeholder,garage,forestry
 query4131	Temeke,living standard
-query3805	customs,territory,yetu,telephone,merchandise
+query3805	customs,territory,flaviana,matata,merchandise
 query1219	branches of government
 query1332	rooms of a house
 query1744	AIDS
 query3418	parking facility
 query2630	election do-over
 query3060	dairy product
-query4162	sanitation,tasaf,programs,conservation
+query4162	sanitation,agribusiness,judicial,tasaf
 query4160	skin bleaching
 query3201	root vegetable
 query3054	passenger aircraft
 query3604	citrus fruit
 query4177	birth control
 query2622	amending the constitution
-query1967	chemicals,finances,fishermen,fishing,mango,garden,eleven,lion
-query4309	lorry,sitting,knife,suicide,life,own,influence,completely
+query1967	chemicals,revenues,proper,expanding,mango,eleven,garden,lion
+query4309	lorry,suicide,performed,bomb,life,charging,potatoes,sins
