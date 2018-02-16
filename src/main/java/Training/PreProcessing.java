@@ -21,7 +21,6 @@ public class PreProcessing {
         inputFile = new ClassPathResource("/MTDoc/MATERIAL_BASE-1A-BUILD_bitext.txt").getFile();
         swOutputFile = inputFile.getParentFile() + "/sw.txt";
         enOutputFile = inputFile.getParentFile() + "/en.txt";
-        System.out.println(new ClassPathResource("/MTDoc/en.txt").getFile().getAbsoluteFile());
     }
     public static void processing() throws IOException{
         init();

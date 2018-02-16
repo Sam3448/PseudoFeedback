@@ -2,7 +2,6 @@ package Training;
 
 import java.io.IOException;
 
-import com.sun.tools.javac.util.BasicDiagnosticFormatter;
 import org.apache.log4j.BasicConfigurator;
 import org.datavec.api.util.ClassPathResource;
 import org.deeplearning4j.models.embeddings.WeightLookupTable;
@@ -29,12 +28,25 @@ public class WordRepresentation {
     private static boolean Train;
     private static String modelPath, extendQueryPath, originalQueryPath;
 
+    private static String doc_index, doc_type, field, query;
+
     static void init(){
         log = LoggerFactory.getLogger(WordRepresentation.class);
+        /*
+        * Word2Vec Parameters
+        * */
         Train = false;
         modelPath = "MTDoc/w2vmodel.txt";
         extendQueryPath = "MTDoc/query_list_parsed_ES_extend.txt";
         originalQueryPath = "MTDoc/query_list_parsed_ES.txt";
+
+        /*
+        * ES Parameters
+        * */
+        doc_index = "sw-en-analysis";
+        doc_type = "doc";
+        field = "gold";
+        query = "CCM";
     }
     public static void main(String[] args) throws IOException{
         // TODO Auto-generated method stub
@@ -52,6 +64,8 @@ public class WordRepresentation {
             }
             W2VModel.testW2v(modelPath, originalQueryPath, extendQueryPath, log);
         }
+
+        ES.ESsearch(doc_index, doc_type, field, query);
     }
 }
 
@@ -64,6 +78,7 @@ class W2VModel{
     /**
      * Train Word2Vec mode.
      */
+
 
     public static void trainW2v(String inputFile, Logger log) throws IOException{
         log.info("Load & Vectorize Sentences....");
