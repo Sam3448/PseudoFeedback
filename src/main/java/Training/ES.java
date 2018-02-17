@@ -21,7 +21,8 @@ import java.util.*;
 
 public class ES {
 
-    private static final int RESULT_SIZE = 5;
+    private static final int RESULT_SIZE = 10;
+    private static final String LOGIC = "OR";
 
     /**
      * Input query file, and search for the whole file
@@ -91,7 +92,7 @@ public class ES {
 
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < queryArr.length; i++){
-            sb.append(queryArr[i]).append((i == queryArr.length ? "" : " OR "));
+            sb.append(queryArr[i]).append((i == queryArr.length ? "" : " " + LOGIC + " "));
         }
 
         QueryBuilder queryBuilder = QueryBuilders.matchQuery(field, sb.toString());
