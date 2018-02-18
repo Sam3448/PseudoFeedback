@@ -148,8 +148,8 @@ class W2VModel{
     *
     * Problems needs to be solved:
     *   1. How to deal with phrases
-    *   2. How to deal with OOVs
-    *
+    *   2. How to deal with OOVs(currently replace with ".")
+    *   3. Python version?
     * */
 
     public static void extendQuery(String originalQueryPath, String extendQueryPath, Word2Vec word2Vec, Logger log) throws IOException{
