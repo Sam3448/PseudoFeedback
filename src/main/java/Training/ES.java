@@ -44,6 +44,8 @@ public class ES {
                 new HttpHost("localhost", 9200, "http")).build();
         RestHighLevelClient client = new RestHighLevelClient(lowLevelRestClient);
 
+        //Execute each query
+        fw.write(String.valueOf(RESULT_SIZE) + "\n");
         while((line = br.readLine()) != null){
             //Parse query
             String[] curQuery = line.split("\t");
@@ -57,15 +59,17 @@ public class ES {
             SearchHits hits = searchResponse.getHits();
             System.out.println("Total Number of Hits :\t" + hits.getTotalHits());
 
-            fw.write(queryId + "\n");
+            fw.write(queryId + "\t");
 
             for(SearchHit hit : hits.getHits()){
                 String id = hit.getId();
                 String content = hit.getSourceAsString();
                 float score = hit.getScore();
 
-                fw.write("\t" + id + "\t" + score  + "\t\n");
+                fw.write(String.format("%s(%.5f) ", id, score));
             }
+
+            fw.write("\n");
         }
 
         lowLevelRestClient.close();
