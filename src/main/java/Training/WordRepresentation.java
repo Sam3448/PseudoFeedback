@@ -1,5 +1,18 @@
 package Training;
 
+/**
+ * Main class.
+ *  1. Call preprocess to get en/sw files for W2V to train.
+ *  2. Train W2V model
+ *  3. Get W2V model and extend query file by neighbor words (NEARWORDS). Format: query_id    words
+ *  4. Send the extend file to ES and get the retrieved results. Format: query_id    retrieved_doc_ids
+ *      5. Evaluate the retrieved result with reference file
+ *
+ *
+ *  get retrieved results and use words inside to further expand query. Loop step 3 to 5.
+ *
+ * */
+
 import java.io.IOException;
 
 import org.apache.log4j.BasicConfigurator;
@@ -26,10 +39,12 @@ import java.util.*;
 public class WordRepresentation {
     private static Logger log;
     private static boolean Train;
-    private static String modelPath, extendQueryPath, originalQueryPath;
+    private static String modelPath, extendQueryPath, originalQueryPath, copyQueryPath;
     private static String queryResultPath;
 
     private static String doc_index, doc_type, field;
+
+    private static final int PSEUDO_LOOP = 1;
 
     static void init(){
         log = LoggerFactory.getLogger(WordRepresentation.class);
@@ -42,6 +57,7 @@ public class WordRepresentation {
         modelPath = "MTDoc/w2vmodel.txt";
         extendQueryPath = "MTDoc/query_list_parsed_ES_extend.txt";
         originalQueryPath = "MTDoc/query_list_parsed_ES.txt";
+        copyQueryPath = "MTDoc/query_list_parsed_ES_copy.txt";
         queryResultPath = "MTDoc/query_list_ES_result.txt";
 
         /*
@@ -65,15 +81,51 @@ public class WordRepresentation {
             W2VModel.trainW2v(sw_enFile[1], log);
         }
         else{
+            //Exception
             if(! new ClassPathResource(modelPath).getFile().exists()) {
                 log.info("Please Train First!");
                 System.exit(0);
             }
-            W2VModel.loadAndTestW2v(modelPath, originalQueryPath, extendQueryPath, log);
 
-            ES es = new ES();
-            es.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
+            //Copy original query file
+            copyOriginalQuery();
+
+            //Pseudo feedback and query extension
+            for(int i = 0; i < PSEUDO_LOOP; i++) {
+                //Step 3: extend query file
+                W2VModel.loadAndTestW2v(modelPath, copyQueryPath, extendQueryPath, log);
+                //Step 4: ES for result file
+                ES es = new ES();
+                es.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
+                //Pseudo feedback to copy query file
+                pseudoFeedback();
+            }
         }
+    }
+
+    public static void pseudoFeedback(){//???
+
+    }
+
+    //Copy original query file
+    public static void copyOriginalQuery() throws IOException{
+        ClassPathResource srcPath = new ClassPathResource(originalQueryPath);
+        File originalQueryFile = srcPath.getFile();
+        if(!originalQueryFile.exists()){
+            log.info("Please import query file (Parsed) for extension.");
+            System.exit(0);
+        }
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(originalQueryFile)));
+        FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent()
+                + "/" + copyQueryPath));
+
+        String line = "";
+        while((line = br.readLine()) != null){
+            fw.write(line + "\n");
+        }
+
+        br.close();
+        fw.close();
     }
 }
 
@@ -81,7 +133,7 @@ class W2VModel{
 
     static final String OOV = ".";
     static final String COMMA = ",";
-    static final int NEARWORDS = 1;
+    static final int NEARWORDS = 0;
 
     /**
      * Train Word2Vec mode.

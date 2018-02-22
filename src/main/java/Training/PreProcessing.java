@@ -1,6 +1,8 @@
 package Training;
 /**
  * Created by SamZhang on 2/14/18.
+ *
+ * Util class. Change the raw MT data format to a pure English/Swahili file.
 **/
 import org.datavec.api.util.ClassPathResource;
 

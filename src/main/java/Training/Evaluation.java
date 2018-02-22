@@ -9,6 +9,9 @@ import java.io.*;
 
 /**
  * Created by SamZhang on 2/21/18.
+ *
+ * Util class.
+ * For this part, we just use the "query_result" file and get the AQWV score.
  */
 public class Evaluation {
     /**
@@ -93,6 +96,9 @@ public class Evaluation {
         //Start evaluation
         double total_score = 0.0;
         int total_count = 0;
+        //for test
+        int total_missed = 0;
+
         HashMap<String, Double> scores = new HashMap();
         for(String queryId : searchQuery2File.keySet()){
             if(!refQuery2File.containsKey(queryId)){
@@ -104,8 +110,9 @@ public class Evaluation {
             HashSet<String> search_docs = new HashSet();
 
             for(Cell c : search_docs_withscore) search_docs.add(c.fileId);
-            System.out.println(ref_docs.toString());
-            System.out.println(search_docs.toString());
+            System.out.println(queryId);
+            System.out.println("\tRef_docs : " + ref_docs.toString());
+            System.out.println("\tSearch_docs : " + search_docs.toString());
             int N_miss = 0, N_FA = 0;
             int N_relevant = ref_docs.size();
             //get N_miss
@@ -116,16 +123,20 @@ public class Evaluation {
             for(String temp : search_docs){
                 if(!ref_docs.contains(temp)) N_FA++;
             }
-            System.out.println(N_miss + "***" + N_relevant);
+            System.out.println("\tN_MISS N_FA N_relevant: " + N_miss + " " + N_FA + " " + N_relevant);
             double P_miss = (N_miss * 1.0) / N_relevant;
             double P_FA = (N_FA * 1.0) / (N_total - N_relevant);
-            System.out.println(P_FA + " " + P_miss);
+            System.out.println("\tP_FA P_MISS: " + P_FA + " " + P_miss);
             scores.put(queryId, 1.0 - (P_miss + beta * P_FA));
 
             total_score += scores.get(queryId);
             total_count++;
+
+            System.out.println("\tMISS FA  " + P_miss + " " + P_FA);
+            if(P_miss == 1) total_missed++;
         }
         System.out.println("Final AQWV = " + total_score / total_count);
+        System.out.println("P_miss = 1 counts :" + total_missed * 1.0 / total_count );
     }
 
     /**

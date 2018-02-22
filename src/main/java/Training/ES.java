@@ -3,6 +3,9 @@ package Training;
 
 /**
  * Created by SamZhang on 2/15/18.
+ *
+ * Util for ES. Can take either query_file/extended_query_file or single query.
+ *
  */
 import org.apache.http.HttpHost;
 import org.datavec.api.util.ClassPathResource;
@@ -10,18 +13,11 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -33,6 +29,8 @@ public class ES {
     private static final String LOGIC = "OR";
     RestHighLevelClient client;
     RestClient lowLevelRestClient;
+
+    //FileWriter test;
     /**
      * Init
      * */
@@ -58,6 +56,7 @@ public class ES {
 
         //Get output result file
         FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultPath));
+        //test = new FileWriter(new File("/Users/SamZhang/Downloads/cmp.txt"));
 
         //Execute each query
         while((line = br.readLine()) != null){
@@ -73,6 +72,8 @@ public class ES {
             SearchHits hits = searchResponse.getHits();
             System.out.println("Total Number of Hits :\t" + hits.getTotalHits());
 
+            //test.write(queryString + "\t" + hits.getTotalHits() + "\n");
+
             fw.write(queryId + "\t");
 
             for(SearchHit hit : hits.getHits()){
@@ -86,6 +87,7 @@ public class ES {
             fw.write("\n");
         }
 
+        //test.close();
         fw.close();
         br.close();
         lowLevelRestClient.close();
@@ -107,15 +109,15 @@ public class ES {
         if(query.contains(",")) queryArr = query.split(",");
         else queryArr[0] = query;
 
-        System.out.println(queryArr.length);
-
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < queryArr.length; i++){
+            queryArr[i] = queryArr[i].trim();
             sb.append(queryArr[i]).append((i == queryArr.length - 1 ? "" : " " + LOGIC + " "));
         }
         System.out.println(sb.toString());
-        QueryBuilder queryBuilder = QueryBuilders.matchQuery(field, sb.toString());
+        QueryBuilder queryBuilder = QueryBuilders.matchQuery(field, sb.toString().trim());
         System.out.println("*************" + queryBuilder.toString());
+        //test.write(queryBuilder.toString() + "\n");
 
         //Use querybuilder to define searchSourceBuilder
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
