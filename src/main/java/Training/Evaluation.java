@@ -82,7 +82,7 @@ public class Evaluation {
             double relateLevel = Double.parseDouble(temp[4]);
 
             searchQuery2File.putIfAbsent(queryId, treeSetBuilder());
-            searchQuery2File.get(queryId).add(new Cell(queryId, relateLevel));
+            searchQuery2File.get(queryId).add(new Cell(relatedFile, relateLevel)); // why in order? what's the difference than not sorted?
         }
         brsearch.close();
 
@@ -95,13 +95,17 @@ public class Evaluation {
         int total_count = 0;
         HashMap<String, Double> scores = new HashMap();
         for(String queryId : searchQuery2File.keySet()){
-            if(!refQuery2File.containsKey(queryId)) continue;
+            if(!refQuery2File.containsKey(queryId)){
+                continue;
+            }
 
             HashSet<String> ref_docs = refQuery2File.get(queryId);
             TreeSet<Cell> search_docs_withscore = searchQuery2File.get(queryId);
             HashSet<String> search_docs = new HashSet();
 
             for(Cell c : search_docs_withscore) search_docs.add(c.fileId);
+            System.out.println(ref_docs.toString());
+            System.out.println(search_docs.toString());
             int N_miss = 0, N_FA = 0;
             int N_relevant = ref_docs.size();
             //get N_miss
@@ -140,11 +144,15 @@ public class Evaluation {
         //process each query and hits
         while((line = br.readLine()) != null){
             String[] id_contentwScore = line.split("\t"); //Query id
+            String queryId = id_contentwScore[0];
+            if(id_contentwScore.length != 2 || id_contentwScore[1].trim().length() == 0){
+                fw.write(queryId + " " + "1 NO_HIT -1 1.0 STANDARD\n");
+                continue;
+            }
             String[] contentwScore = id_contentwScore[1].split("\\s"); // Query result
 
             //parse line
             int size = contentwScore.length;
-            String queryId = id_contentwScore[0];
             String[] retrieveId = new String[size];
             double[] score = new double[size];
 

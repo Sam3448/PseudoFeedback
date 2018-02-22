@@ -81,7 +81,7 @@ class W2VModel{
 
     static final String OOV = ".";
     static final String COMMA = ",";
-    static final int NEARWORDS = 3;
+    static final int NEARWORDS = 1;
 
     /**
      * Train Word2Vec mode.
