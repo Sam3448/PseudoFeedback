@@ -71,7 +71,8 @@ public class WordRepresentation {
             }
             W2VModel.loadAndTestW2v(modelPath, originalQueryPath, extendQueryPath, log);
 
-            ES.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
+            ES es = new ES();
+            es.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
         }
     }
 }
