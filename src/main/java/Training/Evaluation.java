@@ -19,13 +19,6 @@ public class Evaluation {
      * */
     private static String searchOutputFilePath = "MTDoc/search_output.txt";
 
-    //AQWV
-    static final double C = 0.0333;
-    static final double V = 1.0;
-    static final double P_relevant = 1.0 / 600;
-    static final double beta = 20.0;
-    static final double theta = 0.0;
-
     /**
      * AQWV evaluation function
      *
@@ -44,7 +37,15 @@ public class Evaluation {
         return new TreeSet<Cell>((a, b) -> b.score > a.score ? 1 : -1);
     }
 
-    public void getAQWVScore(String referenceFilePath, String doc_index, String doc_type, String field) throws IOException {
+    public void getScore(String referenceFilePath, String doc_index, String doc_type, String field) throws IOException {
+
+        //AQWV
+        final double C = 0.0333;
+        final double V = 1.0;
+        final double P_relevant = 1.0 / 600;
+        final double beta = 20.0;
+        final double theta = 0.0;
+
         ClassPathResource searchPath = new ClassPathResource(searchOutputFilePath);
         ClassPathResource refPath = new ClassPathResource(referenceFilePath);
         File searchFile = searchPath.getFile(), refFile = refPath.getFile();
@@ -95,9 +96,14 @@ public class Evaluation {
 
         //Start evaluation
         double total_score = 0.0;
+        double total_AP = 0.0;
         int total_count = 0;
-        //for test
-        int total_missed = 0;
+        int total_miss = 0;
+        int total_relevant = 0;
+        int total_retrieved = 0;
+        int total_match = 0;
+        int total_FA = 0;
+        int numberOfQuery = 0;
 
         HashMap<String, Double> scores = new HashMap();
         for(String queryId : searchQuery2File.keySet()){
@@ -105,38 +111,69 @@ public class Evaluation {
                 continue;
             }
 
+            numberOfQuery++;
+
             HashSet<String> ref_docs = refQuery2File.get(queryId);
             TreeSet<Cell> search_docs_withscore = searchQuery2File.get(queryId);
-            HashSet<String> search_docs = new HashSet();
+            List<String> search_docs = new ArrayList();
 
             for(Cell c : search_docs_withscore) search_docs.add(c.fileId);
-            System.out.println(queryId);
-            System.out.println("\tRef_docs : " + ref_docs.toString());
-            System.out.println("\tSearch_docs : " + search_docs.toString());
-            int N_miss = 0, N_FA = 0;
+
+            int N_miss = 0, N_FA = 0, N_match = 0;
             int N_relevant = ref_docs.size();
+            total_relevant += N_relevant;
+            int N_retrieved = search_docs.size();
+            total_retrieved += N_retrieved;
+
+            double precision_addup = 0.0;
+
             //get N_miss
             for(String temp : ref_docs){
                 if(!search_docs.contains(temp)) N_miss++;
             }
+
             //get N_FA
+            int count = 0;
             for(String temp : search_docs){
+                ++count;
                 if(!ref_docs.contains(temp)) N_FA++;
+                else{
+                    N_match++;
+                    precision_addup += N_match / count;
+                }
             }
-            System.out.println("\tN_MISS N_FA N_relevant: " + N_miss + " " + N_FA + " " + N_relevant);
+            total_miss += N_miss;
+            total_match += N_match;
+
+            total_FA += N_FA;
+
             double P_miss = (N_miss * 1.0) / N_relevant;
             double P_FA = (N_FA * 1.0) / (N_total - N_relevant);
-            System.out.println("\tP_FA P_MISS: " + P_FA + " " + P_miss);
+            double AP = precision_addup / N_relevant;
+            total_AP += AP;
+
             scores.put(queryId, 1.0 - (P_miss + beta * P_FA));
 
             total_score += scores.get(queryId);
             total_count++;
-
-            System.out.println("\tMISS FA  " + P_miss + " " + P_FA);
-            if(P_miss == 1) total_missed++;
         }
-        System.out.println("Final AQWV = " + total_score / total_count);
-        System.out.println("P_miss = 1 counts :" + total_missed * 1.0 / total_count );
+
+        double AQWV = total_score / total_count;
+        double P_overall_miss = total_miss * 1.0 / total_relevant;
+        double P_overall_FA = total_FA * 1.0 / (numberOfQuery * N_total - total_relevant);
+        double P_overall_precision = (total_match * 1.0) / total_retrieved;
+        double P_overall_recall = (total_match * 1.0) / total_relevant;
+        double MAP = total_AP * 1.0 / total_count;
+
+        //Print result
+        System.out.println("****************RESULT******************");
+        System.out.println("Final AQWV =\t" + AQWV);
+        System.out.println("Final P_miss =\t" + P_overall_miss);
+        System.out.println("Final P_FA =\t" + P_overall_FA);
+        System.out.println("Final P_precision =\t" + P_overall_precision);
+        System.out.println("Final P_recall =\t" + P_overall_recall);
+        System.out.println("Final MAP =\t" + MAP);
+        System.out.println("****************/RESULT*****************");
     }
 
     /**

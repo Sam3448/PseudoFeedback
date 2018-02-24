@@ -30,7 +30,7 @@ public class ES {
     RestHighLevelClient client;
     RestClient lowLevelRestClient;
 
-    //FileWriter test;
+    FileWriter test;
     /**
      * Init
      * */
@@ -56,7 +56,7 @@ public class ES {
 
         //Get output result file
         FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultPath));
-        //test = new FileWriter(new File("/Users/SamZhang/Downloads/cmp.txt"));
+        test = new FileWriter(new File("/Users/SamZhang/Downloads/cmp.txt"));
 
         //Execute each query
         while((line = br.readLine()) != null){
@@ -72,7 +72,7 @@ public class ES {
             SearchHits hits = searchResponse.getHits();
             System.out.println("Total Number of Hits :\t" + hits.getTotalHits());
 
-            //test.write(queryString + "\t" + hits.getTotalHits() + "\n");
+            test.write(queryId + "\t" + queryString + "\t" + hits.getTotalHits() + "\n\n");
 
             fw.write(queryId + "\t");
 
@@ -87,7 +87,7 @@ public class ES {
             fw.write("\n");
         }
 
-        //test.close();
+        test.close();
         fw.close();
         br.close();
         lowLevelRestClient.close();
@@ -115,9 +115,8 @@ public class ES {
             sb.append(queryArr[i]).append((i == queryArr.length - 1 ? "" : " " + LOGIC + " "));
         }
         System.out.println(sb.toString());
-        QueryBuilder queryBuilder = QueryBuilders.matchQuery(field, sb.toString().trim());
-        System.out.println("*************" + queryBuilder.toString());
-        //test.write(queryBuilder.toString() + "\n");
+        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery(sb.toString().trim()).field(field);
+        test.write(queryBuilder.toString() + "\n");
 
         //Use querybuilder to define searchSourceBuilder
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();

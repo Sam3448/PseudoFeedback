@@ -133,7 +133,7 @@ class W2VModel{
 
     static final String OOV = ".";
     static final String COMMA = ",";
-    static final int NEARWORDS = 0;
+    static final int NEARWORDS = 2;
 
     /**
      * Train Word2Vec mode.
@@ -156,8 +156,8 @@ class W2VModel{
 
         log.info("Building model....");
         Word2Vec word2vec = new Word2Vec.Builder()
-                .minWordFrequency(5)
-                .iterations(1)
+                .minWordFrequency(0)
+                .iterations(10)
                 .epochs(1)
                 .layerSize(100)
                 .seed(42)
@@ -200,8 +200,8 @@ class W2VModel{
     * Now only look for nearest words for each query.
     *
     * Problems needs to be solved:
-    *   1. How to deal with phrases
-    *   2. How to deal with OOVs(currently replace with ".")
+    *   1. How to deal with phrases ignore or word by word or parse and get the nouns or verbs
+    *   2. How to deal with OOVs(currently replace with ".") ==> ignore
     *   3. Python version?
     * */
 
@@ -219,7 +219,7 @@ class W2VModel{
 
         String line = "";
         int countOOV = 0;
-
+        int totalWords = 0;
         while((line = br.readLine()) != null){
             if(line.startsWith("query_id")){
                 continue;
@@ -229,12 +229,13 @@ class W2VModel{
 
             String[] q = line.split("\t");
             String id = q[0], words = q[1];
-            String[] w = words.split(COMMA); // how to deal with phrases?
+            String[] w = words.split(COMMA);
 
             sb.append(id).append("\t");
 
             for(String curWord : w){
                 Collection<String> wordList = new ArrayList();
+                totalWords++;
 
                 if(word2Vec.hasWord(curWord)){
                     wordList = word2Vec.wordsNearest(curWord, NEARWORDS);
@@ -254,6 +255,7 @@ class W2VModel{
 
         fw.close();
         br.close();
-        System.out.println(countOOV);
+        System.out.println("****OOV = " + countOOV);
+        System.out.println("****Total = " + totalWords);
     }
 }
