@@ -163,6 +163,7 @@ public class Evaluation {
         double P_overall_FA = total_FA * 1.0 / (numberOfQuery * N_total - total_relevant);
         double P_overall_precision = (total_match * 1.0) / total_retrieved;
         double P_overall_recall = (total_match * 1.0) / total_relevant;
+        double P_overall_F1 = (2 * P_overall_precision * P_overall_recall) / (P_overall_precision + P_overall_recall);
         double MAP = total_AP * 1.0 / total_count;
 
         //Print result
@@ -172,6 +173,7 @@ public class Evaluation {
         System.out.println("Final P_FA =\t" + P_overall_FA);
         System.out.println("Final P_precision =\t" + P_overall_precision);
         System.out.println("Final P_recall =\t" + P_overall_recall);
+        System.out.println("Final F1 =\t" + P_overall_F1);
         System.out.println("Final MAP =\t" + MAP);
         System.out.println("****************/RESULT*****************");
     }

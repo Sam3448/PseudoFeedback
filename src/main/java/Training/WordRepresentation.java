@@ -15,6 +15,7 @@ package Training;
 
 import java.io.IOException;
 
+import DataStructure.Trie;
 import org.apache.log4j.BasicConfigurator;
 import org.datavec.api.util.ClassPathResource;
 import org.deeplearning4j.models.embeddings.WeightLookupTable;
@@ -26,9 +27,12 @@ import org.deeplearning4j.models.word2vec.wordstore.VocabCache;
 import org.deeplearning4j.models.word2vec.wordstore.inmemory.AbstractCache;
 import org.deeplearning4j.text.sentenceiterator.BasicLineIterator;
 import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
-import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor;
+import sys.change.preprocessor.*;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
+import org.deeplearning4j.text.tokenization.tokenizerfactory.NGramTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
+import org.apache.uima.resource.ResourceInitializationException;
+import org.deeplearning4j.text.tokenization.tokenizerfactory.UimaTokenizerFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +72,7 @@ public class WordRepresentation {
         doc_type = "doc";
         field = "gold";
     }
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, ResourceInitializationException {
         // TODO Auto-generated method stub
         //log setup
         BasicConfigurator.configure();
@@ -131,22 +135,27 @@ public class WordRepresentation {
 
 class W2VModel{
 
-    static final String OOV = ".";
-    static final String COMMA = ",";
-    static final int NEARWORDS = 2;
+    private static final String OOV = "."; // add nothing
+    private static final String COMMA = ",";
+    private static final int NEARWORDS = 1;
+    private static Trie root;
+    private static PrefixSearch prefixsearch;
+    private static final int tolerance = 3;
+    private static CommonPreprocessor commonpreprocessor = new CommonPreprocessor();
 
     /**
      * Train Word2Vec mode.
      */
 
 
-    public static void trainW2v(String inputFile, Logger log) throws IOException{
+    public static void trainW2v(String inputFile, Logger log) throws IOException, ResourceInitializationException {
         log.info("Load & Vectorize Sentences....");
 
         SentenceIterator iter = new BasicLineIterator(inputFile);
 
         TokenizerFactory t = new DefaultTokenizerFactory();
-        t.setTokenPreProcessor(new CommonPreprocessor());
+
+        t.setTokenPreProcessor(commonpreprocessor); // Common preprocessor: 去掉所有标点，并且所有单词lowercase化
 
         VocabCache<VocabWord> cache = new AbstractCache();
         WeightLookupTable<VocabWord> table = new InMemoryLookupTable.Builder<VocabWord>()
@@ -192,6 +201,21 @@ class W2VModel{
         Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel(new ClassPathResource(modelPath)
                 .getFile()
                 .getAbsolutePath());
+
+        //Check out vocab words
+        Collection<String> vocab = word2Vec.getVocab().words();
+
+        FileWriter fw = new FileWriter("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/MTDoc/w2v_dict.txt");
+        for(String s : vocab){
+            fw.write(s + "\n");
+        }
+        fw.close();
+
+        //build Trie base on w2v vocab, for prefix match of OOVs
+        prefixsearch = new PrefixSearch();
+        root = prefixsearch.buildeTrieRoot(vocab);
+
+        //word2vec done. extend query
         extendQuery(originalQueryPath, extendQueryPath, word2Vec, log);
     }
 
@@ -220,6 +244,9 @@ class W2VModel{
         String line = "";
         int countOOV = 0;
         int totalWords = 0;
+
+
+
         while((line = br.readLine()) != null){
             if(line.startsWith("query_id")){
                 continue;
@@ -234,15 +261,38 @@ class W2VModel{
             sb.append(id).append("\t");
 
             for(String curWord : w){
+                if(curWord == null || curWord.length() == 0 || curWord.trim().length() == 0) continue;
+
                 Collection<String> wordList = new ArrayList();
                 totalWords++;
 
-                if(word2Vec.hasWord(curWord)){
-                    wordList = word2Vec.wordsNearest(curWord, NEARWORDS);
+                //replaceWord 就是当前query的表征词, 一个词的query就是query本身，词组才会选择出表证词
+                String representWord = curWord.trim();
+                if(representWord.contains(" ")){
+                        List<String> rankedWords = extractWords(representWord);
+                        representWord = rankedWords.get(0);//highest score
+                }
+
+                //进行预处理，对于本来就在vocab的词没有任何影响，对于不在的筛除可能的标点
+                representWord = representWord.trim();
+                representWord = commonpreprocessor.preProcess(representWord);
+
+
+                //进行prefix match with tolerance of left_over length.
+                if(!word2Vec.hasWord(representWord)){
+                    System.out.println("Prefix before : " + representWord);
+                    representWord = prefixsearch.searcPrefix(representWord, root, tolerance); //Low precision. Need Improvement.
+                    System.out.println("Prefix after : " + representWord);
+                }
+
+
+                if(representWord != null && word2Vec.hasWord(representWord)){//query word in vocab, extend straightly
+                    wordList = word2Vec.wordsNearest(representWord, NEARWORDS);
+                    System.out.println();
                 }
                 else{ //OOV
-                    wordList = word2Vec.wordsNearest(OOV, NEARWORDS);
                     countOOV++;
+                    System.out.println("Before : " + curWord + "\tAfter : " + (representWord.length() == 0 ? "NONE" : representWord) + '\n');
                 }
 
                 sb.append(curWord).append(COMMA);
@@ -257,5 +307,13 @@ class W2VModel{
         br.close();
         System.out.println("****OOV = " + countOOV);
         System.out.println("****Total = " + totalWords);
+    }
+
+    private static List<String> extractWords(String phrase){// Not implemented
+        List<String> rankWords = new ArrayList();
+
+        rankWords.add(phrase.substring(phrase.lastIndexOf(' ') + 1));
+
+        return rankWords;
     }
 }
