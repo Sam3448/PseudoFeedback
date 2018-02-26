@@ -1,7 +1,6 @@
 package Training;
 
 import org.datavec.api.util.ClassPathResource;
-import org.elasticsearch.action.search.SearchResponse;
 
 import java.util.*;
 
@@ -92,7 +91,8 @@ public class Evaluation {
 
         //Get total number of documents
         ES es = new ES();
-        int N_total = (int)es.getCount(doc_index, doc_type, field);
+        int N_total = (int)es.getMatchAllResults(doc_index, doc_type, field, 0).getHits().getTotalHits();
+        es.close();
 
         //Start evaluation
         double total_score = 0.0;

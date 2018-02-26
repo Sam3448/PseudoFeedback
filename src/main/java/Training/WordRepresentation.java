@@ -18,6 +18,7 @@ import java.io.IOException;
 import DataStructure.Trie;
 import org.apache.log4j.BasicConfigurator;
 import org.datavec.api.util.ClassPathResource;
+
 import org.deeplearning4j.models.embeddings.WeightLookupTable;
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
@@ -27,15 +28,17 @@ import org.deeplearning4j.models.word2vec.wordstore.VocabCache;
 import org.deeplearning4j.models.word2vec.wordstore.inmemory.AbstractCache;
 import org.deeplearning4j.text.sentenceiterator.BasicLineIterator;
 import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
-import sys.change.preprocessor.*;
+import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
-import org.deeplearning4j.text.tokenization.tokenizerfactory.NGramTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
+
+//import sys.change.preprocessor.*;
+
 import org.apache.uima.resource.ResourceInitializationException;
-import org.deeplearning4j.text.tokenization.tokenizerfactory.UimaTokenizerFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import java.io.*;
 import java.util.*;
@@ -101,6 +104,7 @@ public class WordRepresentation {
                 //Step 4: ES for result file
                 ES es = new ES();
                 es.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
+                es.close();
                 //Pseudo feedback to copy query file
                 pseudoFeedback();
             }

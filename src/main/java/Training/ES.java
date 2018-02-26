@@ -8,16 +8,26 @@ package Training;
  *
  */
 import org.apache.http.HttpHost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.datavec.api.util.ClassPathResource;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequest;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -90,7 +100,6 @@ public class ES {
         test.close();
         fw.close();
         br.close();
-        lowLevelRestClient.close();
     }
 
     /**
@@ -137,24 +146,44 @@ public class ES {
     /**
      * Get how many docs under a index/type
      * */
-    public long getCount(String doc_index, String doc_type,String field) throws IOException{
-        long res = 0;
+    public SearchResponse getMatchAllResults(String doc_index, String doc_type, String field, int expectSize) throws IOException{
 
         QueryBuilder queryBuilder = QueryBuilders.queryStringQuery("*");
 
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(queryBuilder);
-        searchSourceBuilder.size(0);
+        searchSourceBuilder.size(expectSize);
 
         SearchRequest searchRequest = new SearchRequest(doc_index);
         searchRequest.types(doc_type);
         searchRequest.source(searchSourceBuilder);
-        System.out.println(searchRequest.toString());
 
-        res = client.search(searchRequest).getHits().getTotalHits();
-
-        lowLevelRestClient.close();
+        SearchResponse res = client.search(searchRequest);
 
         return res;
+    }
+
+    public List<String> getAnalyzedTokens(String index, String query) throws IOException{
+
+        TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
+
+        List<String> res = new ArrayList();
+
+        AnalyzeRequest request = (new AnalyzeRequest(index)).analyzer("standard").text(query);//Using standard analyzer, the same as Elasticsearch mapping setting
+
+        List<AnalyzeResponse.AnalyzeToken> tokens = client.admin().indices().analyze(request).actionGet().getTokens();
+        for (AnalyzeResponse.AnalyzeToken token : tokens)
+        {
+            res.add(token.getTerm());
+        }
+
+        client.close();
+
+        return res;
+    }
+
+    public void close() throws IOException {
+        lowLevelRestClient.close();
     }
 }
