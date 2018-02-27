@@ -17,6 +17,7 @@ public class Evaluation {
      * Parameter setting
      * */
     private static String searchOutputFilePath = "MTDoc/search_output.txt";
+    private static String getSearchOutputFilePath = "MTDoc/changedQueryId.txt";
 
     /**
      * AQWV evaluation function
@@ -36,7 +37,24 @@ public class Evaluation {
         return new TreeSet<Cell>((a, b) -> b.score > a.score ? 1 : -1);
     }
 
-    public void getScore(String referenceFilePath, String doc_index, String doc_type, String field) throws IOException {
+    public Set<String> getEvaluateQueryId() throws IOException{ // 用的是reference的file path
+        ClassPathResource srcPath = new ClassPathResource(searchOutputFilePath);
+        File f = new File(srcPath.getFile().getParentFile().getParent() + "/" + getSearchOutputFilePath);
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+
+        HashSet<String> res = new HashSet();
+        String line = "";
+
+        while((line = br.readLine()) != null){
+            res.add(line.trim());
+        }
+
+        br.close();
+        return res;
+    }
+
+    public void getScore(String referenceFilePath, String doc_index, String doc_type,
+                         String field, boolean ignoreNotExpanded, Set<String> changedQuery) throws IOException {
 
         //AQWV
         final double C = 0.0333;
@@ -107,6 +125,9 @@ public class Evaluation {
 
         HashMap<String, Double> scores = new HashMap();
         for(String queryId : searchQuery2File.keySet()){
+            //ignore un expanded queries
+            if(ignoreNotExpanded && !changedQuery.contains(queryId)) continue;
+
             if(!refQuery2File.containsKey(queryId)){
                 continue;
             }

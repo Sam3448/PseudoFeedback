@@ -245,6 +245,9 @@ class W2VModel{
         File extendQueryFile = new File(srcPath.getFile().getParentFile().getParent() + "/" + extendQueryPath);
         FileWriter fw = new FileWriter(extendQueryFile);
 
+        File changedQueryId = new File(srcPath.getFile().getParentFile().getPath() + "/changedQueryId.txt");
+        FileWriter fwquery = new FileWriter(changedQueryId);
+
         String line = "";
         int countOOV = 0;
         int totalWords = 0;
@@ -263,6 +266,7 @@ class W2VModel{
             String[] w = words.split(COMMA);
 
             sb.append(id).append("\t");
+            boolean expandAtLeastOneWord = false;
 
             for(String curWord : w){
                 if(curWord == null || curWord.length() == 0 || curWord.trim().length() == 0) continue;
@@ -292,6 +296,7 @@ class W2VModel{
 
                 if(representWord != null && word2Vec.hasWord(representWord)){//query word in vocab, extend straightly
                     wordList = word2Vec.wordsNearest(representWord, NEARWORDS);
+                    expandAtLeastOneWord = true;
                     System.out.println();
                 }
                 else{ //OOV
@@ -304,9 +309,13 @@ class W2VModel{
             }
 
             sb.deleteCharAt(sb.length() - 1);
+
             fw.write(sb.toString() + "\n");
+
+            if(expandAtLeastOneWord) fwquery.write(id + "\n");
         }
 
+        fwquery.close();
         fw.close();
         br.close();
         System.out.println("****OOV = " + countOOV);

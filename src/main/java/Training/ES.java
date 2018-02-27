@@ -35,7 +35,7 @@ import java.util.*;
 
 public class ES {
 
-    private static final int RESULT_SIZE = 15;
+    private static final int RESULT_SIZE = 20;
     private static final String LOGIC = "OR";
     RestHighLevelClient client;
     RestClient lowLevelRestClient;
