@@ -272,10 +272,10 @@ class W2VModel{
 
                 //replaceWord 就是当前query的表征词, 一个词的query就是query本身，词组才会选择出表证词
                 String representWord = curWord.trim();
-                if(representWord.contains(" ")){
-                        List<String> rankedWords = extractWords(representWord);
-                        representWord = rankedWords.get(0);//highest score
-                }
+//                if(representWord.contains(" ")){
+//                        List<String> rankedWords = extractWords(representWord);
+//                        representWord = rankedWords.get(0);//highest score
+//                }
 
                 //进行预处理，对于本来就在vocab的词没有任何影响，对于不在的筛除可能的标点
                 representWord = representWord.trim();
@@ -283,11 +283,11 @@ class W2VModel{
 
 
                 //进行prefix match with tolerance of left_over length.
-                if(!word2Vec.hasWord(representWord)){
-                    System.out.println("Prefix before : " + representWord);
-                    representWord = prefixsearch.searcPrefix(representWord, root, tolerance); //Low precision. Need Improvement.
-                    System.out.println("Prefix after : " + representWord);
-                }
+//                if(!word2Vec.hasWord(representWord)){
+//                    System.out.println("Prefix before : " + representWord);
+//                    representWord = prefixsearch.searcPrefix(representWord, root, tolerance); //Low precision. Need Improvement.
+//                    System.out.println("Prefix after : " + representWord);
+//                }
 
 
                 if(representWord != null && word2Vec.hasWord(representWord)){//query word in vocab, extend straightly
