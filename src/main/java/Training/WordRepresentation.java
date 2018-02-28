@@ -141,7 +141,7 @@ class W2VModel{
 
     private static final String OOV = "."; // add nothing
     private static final String COMMA = ",";
-    private static final int NEARWORDS = 1;
+    private static final int NEARWORDS = 0;
     private static Trie root;
     private static PrefixSearch prefixsearch;
     private static final int tolerance = 3;

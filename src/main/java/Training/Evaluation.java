@@ -189,13 +189,13 @@ public class Evaluation {
 
         //Print result
         System.out.println("****************RESULT******************");
-        System.out.println("Final AQWV =\t" + AQWV);
+        //System.out.println("Final AQWV =\t" + AQWV);
         System.out.println("Final P_miss =\t" + P_overall_miss);
-        System.out.println("Final P_FA =\t" + P_overall_FA);
-        System.out.println("Final P_precision =\t" + P_overall_precision);
+        //System.out.println("Final P_FA =\t" + P_overall_FA);
+        //System.out.println("Final P_precision =\t" + P_overall_precision);
         System.out.println("Final P_recall =\t" + P_overall_recall);
-        System.out.println("Final F1 =\t" + P_overall_F1);
-        System.out.println("Final MAP =\t" + MAP);
+        //System.out.println("Final F1 =\t" + P_overall_F1);
+        //System.out.println("Final MAP =\t" + MAP);
         System.out.println("****************/RESULT*****************");
     }
 
