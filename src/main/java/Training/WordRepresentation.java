@@ -75,7 +75,7 @@ public class WordRepresentation {
 
         Map<String, String> wordRepConfig = totalConfig.get("WordRepresentation");//大小写不变
 
-        Train = wordRepConfig.get("Train".toLowerCase()).equals("True");//都是小写
+        Train = wordRepConfig.get("Train".toLowerCase()).equals("true");//都是小写
 
         modelPath = wordRepConfig.get("modelPath".toLowerCase());
 
@@ -112,7 +112,7 @@ public class WordRepresentation {
             PreProcessing.init(totalConfig.get("PreProcessing"));
             PreProcessing.processing();
             String[] sw_enFile = PreProcessing.fileOutput();
-            w2v.trainW2v(sw_enFile[1], log);
+            w2v.trainW2v(sw_enFile[2], log);
         }
         else{
             //Exception

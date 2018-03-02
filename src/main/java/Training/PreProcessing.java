@@ -29,9 +29,9 @@ public class PreProcessing {
     * Initialize all parameters
     * */
     public static void init(Map<String, String> config) throws IOException{
-        inputFile = config.get("inputFile");
-        text = config.get("textFile");
-        audio = config.get("audioFile");
+        inputFile = config.get("inputFile".toLowerCase());
+        text = config.get("textFile".toLowerCase());
+        audio = config.get("audioFile".toLowerCase());
 
         input = new ClassPathResource(inputFile).getFile();
         swOutputFile = input.getParentFile() + "/sw.txt";
@@ -83,18 +83,18 @@ public class PreProcessing {
 
     public static void extend_MT() throws IOException{
         List<File> textFiles = getFiles(text);
-        //List<File> audioFiles = getFiles(audio);
+        List<File> audioFiles = getFiles(audio);
 
         FileWriter fw = new FileWriter(goldOutputFile);
 
 //        Set<String> keys = en.keySet();
-//
 //        for(String s : keys){//MT
 //            fw.write(en.get(s) + "\n");
 //        }
+
         //GOLD
         for(File f : textFiles) makeExtendFile(f, fw);
-        //for(File f : audioFiles) makeExtendFile(f, fw);
+        for(File f : audioFiles) makeExtendFile(f, fw);
 
         fw.close();
     }
