@@ -15,30 +15,38 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class PreProcessing {
-    static File inputFile;
+
+    static String inputFile;
+    static File input;
     static String swOutputFile;
     static String enOutputFile;
-    static String enOutputFile_extend;
+    static String goldOutputFile;
+
+    static String text, audio;
     static HashMap<String, String> sw = new HashMap(), en = new HashMap();
 
     /**
     * Initialize all parameters
     * */
-    static void init() throws IOException{
+    public static void init(Map<String, String> config) throws IOException{
+        inputFile = config.get("inputFile");
+        text = config.get("textFile");
+        audio = config.get("audioFile");
 
-        inputFile = new ClassPathResource("/MTDoc/MATERIAL_BASE-1A-BUILD_bitext.txt").getFile();
-        swOutputFile = inputFile.getParentFile() + "/sw.txt";
-        enOutputFile = inputFile.getParentFile() + "/en.txt";
-        enOutputFile_extend = inputFile.getParentFile() + "/en_MT_GOLD.txt";
+        input = new ClassPathResource(inputFile).getFile();
+        swOutputFile = input.getParentFile() + "/sw.txt";
+        enOutputFile = input.getParentFile() + "/en.txt";
+        goldOutputFile = input.getParentFile() + "/GOLD.txt";
     }
+
+
 
     /*
     * Read MT files with tuple [id, sw, en], and store in sw,en HashMap.
     * */
 
     public static void processing() throws IOException{
-        init();
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(input)));
         String line = "";
         while((line = br.readLine()) != null){
             String[] cur = line.split("\t");
@@ -67,52 +75,49 @@ public class PreProcessing {
         fwsw.close();
         fwen.close();
 
-        //extend_MT();
+        extend_MT();
 
-        return new String[]{swOutputFile, enOutputFile, enOutputFile_extend};
+        return new String[]{swOutputFile, enOutputFile, goldOutputFile};
     }
-//
-//
-//    public static void extend_MT() throws IOException{
-//        //String audio = "/Users/SamZhang/Documents/RA2017/src/dataset/new_sw/audio";
-//        String text = "/Users/SamZhang/Documents/RA2017/src/dataset/new_sw/text";
-//
-//        List<File> textFiles = getFiles(text);
-//        //List<File> audioFiles = getFiles(audio);
-//
-//        FileWriter fw = new FileWriter(enOutputFile_extend);
-//
+
+
+    public static void extend_MT() throws IOException{
+        List<File> textFiles = getFiles(text);
+        //List<File> audioFiles = getFiles(audio);
+
+        FileWriter fw = new FileWriter(goldOutputFile);
+
 //        Set<String> keys = en.keySet();
 //
 //        for(String s : keys){//MT
 //            fw.write(en.get(s) + "\n");
 //        }
-//        //GOLD
-//        for(File f : textFiles) makeExtendFile(f, fw);
-//        //for(File f : audioFiles) makeExtendFile(f, fw);
-//
-//        fw.close();
-//    }
-//
-//    private static void makeExtendFile(File f, FileWriter fw) throws IOException{
-//        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
-//        String line = "";
-//        while((line = br.readLine()) != null){
-//            String[] temp = line.split("\t");
-//            fw.write(temp[2] + "\n");
-//        }
-//        br.close();
-//    }
-//
-//    private static List<File> getFiles(String path) throws IOException{
-//        List<File> files = new ArrayList();
-//        File root = new File(path);
-//        if(root.exists() && root.isDirectory()){
-//            for(String child : root.list()){
-//                files.add(new File(root.getPath() + "/" + child));
-//            }
-//        }
-//        return files;
-//    }
+        //GOLD
+        for(File f : textFiles) makeExtendFile(f, fw);
+        //for(File f : audioFiles) makeExtendFile(f, fw);
+
+        fw.close();
+    }
+
+    private static void makeExtendFile(File f, FileWriter fw) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+        String line = "";
+        while((line = br.readLine()) != null){
+            String[] temp = line.split("\t");
+            fw.write(temp[2] + "\n");
+        }
+        br.close();
+    }
+
+    private static List<File> getFiles(String path) throws IOException{
+        List<File> files = new ArrayList();
+        File root = new File(path);
+        if(root.exists() && root.isDirectory()){
+            for(String child : root.list()){
+                files.add(new File(root.getPath() + "/" + child));
+            }
+        }
+        return files;
+    }
 }
 

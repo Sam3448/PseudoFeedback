@@ -35,8 +35,12 @@ import java.util.*;
 
 public class ES {
 
-    private static final int RESULT_SIZE = 20;
-    private static final String LOGIC = "OR";
+    private static int RESULT_SIZE;
+    private static String LOGIC;
+    private static String testOutputPath;
+
+    private static String analyzerType;
+
     RestHighLevelClient client;
     RestClient lowLevelRestClient;
 
@@ -45,7 +49,12 @@ public class ES {
      * Init
      * */
 
-    ES(){
+    ES(Map<String, String> config){
+        RESULT_SIZE = Integer.parseInt(config.get("RESULT_SIZE".toLowerCase()));
+        LOGIC = config.get("LOGIC".toLowerCase());
+        testOutputPath = config.get("testOutputPath".toLowerCase());
+        analyzerType = config.get("analyzerType".toLowerCase());
+
         //Get client
         lowLevelRestClient = RestClient.builder(
                 new HttpHost("localhost", 9200, "http")).build();
@@ -66,7 +75,7 @@ public class ES {
 
         //Get output result file
         FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultPath));
-        test = new FileWriter(new File("/Users/SamZhang/Downloads/cmp.txt"));
+        test = new FileWriter(new File(testOutputPath));
 
         //Execute each query
         while((line = br.readLine()) != null){
@@ -170,7 +179,7 @@ public class ES {
 
         List<String> res = new ArrayList();
 
-        AnalyzeRequest request = (new AnalyzeRequest(index)).analyzer("standard").text(query);//Using standard analyzer, the same as Elasticsearch mapping setting
+        AnalyzeRequest request = (new AnalyzeRequest(index)).analyzer(analyzerType).text(query);//Using standard analyzer, the same as Elasticsearch mapping setting
 
         List<AnalyzeResponse.AnalyzeToken> tokens = client.admin().indices().analyze(request).actionGet().getTokens();
         for (AnalyzeResponse.AnalyzeToken token : tokens)

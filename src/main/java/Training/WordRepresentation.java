@@ -16,6 +16,7 @@ package Training;
 import java.io.IOException;
 
 import DataStructure.Trie;
+import ca.szc.configparser.Ini;
 import org.apache.log4j.BasicConfigurator;
 import org.datavec.api.util.ClassPathResource;
 
@@ -41,39 +42,62 @@ import org.slf4j.LoggerFactory;
 
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class WordRepresentation {
     private static Logger log;
-    private static boolean Train;
-    private static String modelPath, extendQueryPath, originalQueryPath, copyQueryPath;
-    private static String queryResultPath;
 
+    private static Map<String, Map<String, String>> totalConfig;
+
+    private static boolean Train;
+    private static String modelPath, extendQueryPath, originalQueryPath, copyQueryPath, changedQueryPath;
+    private static String queryResultPath;
     private static String doc_index, doc_type, field;
 
-    private static final int PSEUDO_LOOP = 1;
+    private static int PSEUDO_LOOP;
 
-    static void init(){
+    static void init() throws IOException{
         log = LoggerFactory.getLogger(WordRepresentation.class);
+
+        /*
+         * Import config file
+         * */
+
+        Path input = Paths.get("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/Config/pseudo.cfg");
+        Ini ini = new Ini().read(input);
+        totalConfig = ini.getSections();
 
         /*
         * Word2Vec Parameters
         * */
 
-        Train = false;
-        modelPath = "MTDoc/w2vmodel.txt";
-        extendQueryPath = "MTDoc/query_list_parsed_ES_extend.txt";
-        originalQueryPath = "MTDoc/query_list_parsed_ES.txt";
-        copyQueryPath = "MTDoc/query_list_parsed_ES_copy.txt";
-        queryResultPath = "MTDoc/query_list_ES_result.txt";
+        Map<String, String> wordRepConfig = totalConfig.get("WordRepresentation");//大小写不变
+
+        Train = wordRepConfig.get("Train".toLowerCase()).equals("True");//都是小写
+
+        modelPath = wordRepConfig.get("modelPath".toLowerCase());
+
+        originalQueryPath = wordRepConfig.get("originalQueryPath".toLowerCase());
+        copyQueryPath = wordRepConfig.get("copyQueryPath".toLowerCase());
+
+        extendQueryPath = wordRepConfig.get("extendQueryPath".toLowerCase());
+        queryResultPath = wordRepConfig.get("queryResultPath".toLowerCase());
+
+        changedQueryPath = wordRepConfig.get("changedQueryPath".toLowerCase());
+
+        PSEUDO_LOOP = Integer.parseInt(wordRepConfig.get("PSEUDO_LOOP".toLowerCase()));
 
         /*
         * ES Parameters
         * */
 
-        doc_index = "sw-en-analysis";
-        doc_type = "doc";
-        field = "gold";
+        Map<String, String> generalConfig = totalConfig.get("General");
+
+        doc_index = generalConfig.get("doc_index".toLowerCase());
+        doc_type = generalConfig.get("doc_type".toLowerCase());
+        field = generalConfig.get("field".toLowerCase());
     }
     public static void main(String[] args) throws IOException, ResourceInitializationException {
         // TODO Auto-generated method stub
@@ -82,10 +106,13 @@ public class WordRepresentation {
 
         init();
 
+        W2VModel w2v = new W2VModel(totalConfig.get("W2VModel"));
+
         if(Train) {
+            PreProcessing.init(totalConfig.get("PreProcessing"));
             PreProcessing.processing();
             String[] sw_enFile = PreProcessing.fileOutput();
-            W2VModel.trainW2v(sw_enFile[1], log);
+            w2v.trainW2v(sw_enFile[1], log);
         }
         else{
             //Exception
@@ -100,11 +127,13 @@ public class WordRepresentation {
             //Pseudo feedback and query extension
             for(int i = 0; i < PSEUDO_LOOP; i++) {
                 //Step 3: extend query file
-                W2VModel.loadAndTestW2v(modelPath, copyQueryPath, extendQueryPath, log);
+                w2v.loadAndTestW2v(modelPath, copyQueryPath, extendQueryPath, changedQueryPath, log);
+
                 //Step 4: ES for result file
-                ES es = new ES();
+                ES es = new ES(totalConfig.get("ES"));
                 es.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
                 es.close();
+
                 //Pseudo feedback to copy query file
                 pseudoFeedback();
             }
@@ -139,20 +168,26 @@ public class WordRepresentation {
 
 class W2VModel{
 
-    private static final String OOV = "."; // add nothing
-    private static final String COMMA = ",";
-    private static final int NEARWORDS = 0;
+    private static String COMMA;
+    private static int NEARWORDS;
+    private static int TOLERANCE;
+
     private static Trie root;
     private static PrefixSearch prefixsearch;
-    private static final int tolerance = 3;
     private static CommonPreprocessor commonpreprocessor = new CommonPreprocessor();
+
+
+    public W2VModel(Map<String, String> config){
+        COMMA = config.get("COMMA".toLowerCase());
+        NEARWORDS = Integer.parseInt(config.get("NEARWORDS".toLowerCase()));
+        TOLERANCE = Integer.parseInt(config.get("TOLERANCE".toLowerCase()));
+    }
 
     /**
      * Train Word2Vec mode.
      */
 
-
-    public static void trainW2v(String inputFile, Logger log) throws IOException, ResourceInitializationException {
+    public void trainW2v(String inputFile, Logger log) throws IOException, ResourceInitializationException {
         log.info("Load & Vectorize Sentences....");
 
         SentenceIterator iter = new BasicLineIterator(inputFile);
@@ -201,7 +236,8 @@ class W2VModel{
      * */
 
 
-    public static void loadAndTestW2v(String modelPath, String originalQueryPath, String extendQueryPath, Logger log) throws IOException {
+    public void loadAndTestW2v(String modelPath, String originalQueryPath,
+                                      String extendQueryPath, String changedQueryPath, Logger log) throws IOException {
         Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel(new ClassPathResource(modelPath)
                 .getFile()
                 .getAbsolutePath());
@@ -209,7 +245,7 @@ class W2VModel{
         //Check out vocab words
         Collection<String> vocab = word2Vec.getVocab().words();
 
-        FileWriter fw = new FileWriter("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/MTDoc/w2v_dict.txt");
+        FileWriter fw = new FileWriter(changedQueryPath);
         for(String s : vocab){
             fw.write(s + "\n");
         }
@@ -233,7 +269,7 @@ class W2VModel{
     *   3. Python version?
     * */
 
-    public static void extendQuery(String originalQueryPath, String extendQueryPath, Word2Vec word2Vec, Logger log) throws IOException{
+    public void extendQuery(String originalQueryPath, String extendQueryPath, Word2Vec word2Vec, Logger log) throws IOException{
         ClassPathResource srcPath = new ClassPathResource(originalQueryPath);
         if(! srcPath.getFile().exists()){
             log.info("Please import query file (Parsed) for extension.");
@@ -322,7 +358,7 @@ class W2VModel{
         System.out.println("****Total = " + totalWords);
     }
 
-    private static List<String> extractWords(String phrase){// Not implemented
+    private List<String> extractWords(String phrase){// Not implemented
         List<String> rankWords = new ArrayList();
 
         rankWords.add(phrase.substring(phrase.lastIndexOf(' ') + 1));

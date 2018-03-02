@@ -16,8 +16,10 @@ public class Evaluation {
     /**
      * Parameter setting
      * */
-    private static String searchOutputFilePath = "MTDoc/search_output.txt";
-    private static String getSearchOutputFilePath = "MTDoc/changedQueryId.txt";
+    private static String searchOutputFilePath;
+    private static String getSearchOutputFilePath;
+
+    Map<String, Map<String, String>> totalConfig;
 
     /**
      * AQWV evaluation function
@@ -35,6 +37,14 @@ public class Evaluation {
     }
     TreeSet<Cell> treeSetBuilder(){
         return new TreeSet<Cell>((a, b) -> b.score > a.score ? 1 : -1);
+    }
+
+    public Evaluation(Map<String, Map<String, String>> totoalConfig){
+        this.totalConfig = totoalConfig;
+        Map<String, String> config = totoalConfig.get("Evaluation");
+
+        searchOutputFilePath = config.get("searchOutputFilePath".toLowerCase());
+        getSearchOutputFilePath = config.get("getSearchOutputFilePath".toLowerCase());
     }
 
     public Set<String> getEvaluateQueryId() throws IOException{ // 用的是reference的file path
@@ -108,7 +118,7 @@ public class Evaluation {
         brsearch.close();
 
         //Get total number of documents
-        ES es = new ES();
+        ES es = new ES(totalConfig.get("ES"));
         int N_total = (int)es.getMatchAllResults(doc_index, doc_type, field, 0).getHits().getTotalHits();
         es.close();
 

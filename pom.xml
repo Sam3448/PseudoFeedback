@@ -9,6 +9,10 @@
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <url>http://maven.apache.org</url>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.nd4j</groupId>
@@ -31,12 +35,17 @@
             <!--<artifactId>deeplearning4j-nlp</artifactId>-->
             <!--<version>0.9.1</version>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-nlp-uima</artifactId>
             <version>0.9.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>ca.szc.configparser</groupId>
+            <artifactId>java-configparser</artifactId>
+            <version>0.2</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

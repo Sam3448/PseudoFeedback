@@ -1,7 +1,12 @@
 package Training;
 
 
+import ca.szc.configparser.Ini;
+
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -9,7 +14,13 @@ import java.util.Set;
  */
 public class test {
     public static void main(String[] args) throws IOException {
-        Evaluation e = new Evaluation();
+        Path input = Paths.get("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/Config/pseudo.cfg");
+        System.out.println(input.toAbsolutePath());
+        Ini ini = new Ini().read(input);
+        Map<String, Map<String, String>> cur = ini.getSections();
+        System.out.println(cur.get("PreProcessing").get("textfile"));
+
+        Evaluation e = new Evaluation(cur);
         e.preProcessQueryResult("MTDoc/query_list_ES_result.txt");
 
         Set<String> changedQuery = e.getEvaluateQueryId();

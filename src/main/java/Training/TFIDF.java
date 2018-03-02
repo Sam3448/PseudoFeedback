@@ -1,10 +1,13 @@
 package Training;
 
+import ca.szc.configparser.Ini;
 import org.datavec.api.util.ClassPathResource;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -12,7 +15,11 @@ import java.util.*;
  */
 public class TFIDF {
     public static void main(String[] args) throws Exception{
-        TFIDF_test test = new TFIDF_test();
+        Path input = Paths.get("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/Config/pseudo.cfg");
+        Ini ini = new Ini().read(input);
+        Map<String, Map<String, String>> cur = ini.getSections();
+
+        TFIDF_test test = new TFIDF_test(cur);
         File f = new File("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/MTDoc/tokens_After_Analyzer.txt");
         if(!f.exists()){
             test.buildTokens("sw-en-analysis", "doc", "gold");
@@ -31,14 +38,20 @@ class TFIDF_test{
     Map<String, Integer> doc_wordCount;
     Map<String, TreeMap<Double, String>> doc_TF_IDF;
 
-    public String tokensOutput = "MTDoc/tokens_After_Analyzer.txt";
+    Map<String, Map<String, String>> totalConfig;
 
-    public TFIDF_test(){
+    private String tokensOutput;
+
+    public TFIDF_test(Map<String, Map<String, String>> totalConfig){
         doc_vocab_count = new HashMap();
         vocab_docs = new HashMap<>();
         doc_wordCount = new HashMap<>();
         doc_TF_IDF = new HashMap<>();
         doc_tokens = new HashMap<>();
+        this.totalConfig = totalConfig;
+
+        Map<String, String> config = totalConfig.get("TFIDF");
+        this.tokensOutput = config.get("tokensOutput".toLowerCase());
     }
 
     public void loadTokens() throws IOException{
@@ -56,9 +69,10 @@ class TFIDF_test{
     }
 
     public void buildTokens(String index, String type, String field) throws IOException{
-        ES es = new ES();
+        ES es = new ES(totalConfig.get("ES"));
 
-        FileWriter fw = new FileWriter(new File("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/MTDoc/tokens_After_Analyzer.txt"));
+        FileWriter fw = new FileWriter(new File(
+                "/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/MTDoc/tokens_After_Analyzer.txt"));
 
         SearchResponse allDocs = es.getMatchAllResults(index, type, field, 1000);
         int count = 0;
