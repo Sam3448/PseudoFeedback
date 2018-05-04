@@ -1,300 +1,300 @@
-query1925	end of the year exams
+query1925	end of the year exams,grade,examinations
 query2486	insect
-query3530	blood pressure
-query3637	broadcasted live
+query3530	blood pressure,hiv,diabetes,cells
+query3637	broadcasted live,fm,television,aired
 query3772	lungs
-query1236	ankle bells
-query3011	spy,bomb,lorry,attacks
-query482	road accident
-query3532	reduce,frictions,benches,accident,incorporeal,driver
-query478	British colonies
-query1997	city council
-query1528	Bungoma,factory,pulping,boot
-query1930	rebuild,justifying,spend
-query1824	sustainability,self,perceive,motorcycle,riders,taxis
-query3993	commit suicide,gun,homosexual,cafeteria
-query1637	Al Bashir,president,jakaya,erred
-query1980	sunflower oil
-query1899	crown,universe,ngwengwe
-query1916	garbage,dumping,poisonous,ladder
-query2012	church,catholic,telc
-query1412	publicity,ideology,propagation,protest,tgnp,humane
-query1904	Red Cross
-query1639	Ugandan,chameleone,okwi
-query1539	Brazil,copa,benfica,refugee,nyarugusu,brefugee
-query1554	Shimoni,uluguru,inaccessibility,political refugees
-query1056	poem,poet,mkombe
-query1820	breakfast,bongwe,amplifaya
+query1236	ankle bells,z,chest,legs,stomach
+query3011	spy,bomb,executed,suicide,attacks,attack
+query482	road accident,mpinga,traffic,safety
+query3532	reduce,congestion,access,shortage,solve,accident,died,driver,injuries,incident
+query478	British colonies,cooke,aviation,kijazi,arts
+query1997	city council,es,salaam,hall
+query1528	Bungoma,factory,calvin,tbl,breweries,plant
+query1930	rebuild,practical,carried,relevant,mlata
+query1824	sustainability,studying,abroad,diploma,self,motorcycle,motorcycles,motorbike,boda,riders
+query3993	commit suicide,resembles,bomb,committing,gun,bomb,shot,bullets,pounds
+query1637	Al Bashir,yusuph,unesco,nkoromo,president,vice,mrisho,republic,jakaya
+query1980	sunflower oil,cooking,processing,gas,extraction
+query1899	crown,crystal,chelsea,beauty,universe
+query1916	garbage,worthy,poisonous,excellency,mpina,ladder
+query2012	church,diocese,resurrection,gwajima,catholic
+query1412	publicity,nape,propagation,ideology,nnauye,protest,protesting,gender,violence,tgnp
+query1904	Red Cross,mid-fielder,minute,tambwe
+query1639	Ugandan,pluijm,ronaldo,kardashian,okwi
+query1539	Brazil,euro,tournament,copa,finals,refugee,unhcr,kasulu,refugees,nyarugusu
+query1554	Shimoni,measuring,toilet,ewura,bura,political refugees,parties,refugee,unhcr
+query1056	poem,jafary,sumaye,jerry,silaa
+query1820	breakfast,aired,xxl,clouds,fm
 query1903	snow
-query1634	port,mbegani,usafiri
-query1424	library,mwedo,fence
-query1648	arrow,siisii,zesco
-query3609	peace treaty,law,regulations,laws
+query1634	port,tazara,ports,cargo,terminal
+query1424	library,buyuni,mwedo,fence,classrooms
+query1648	arrow,ulimwengu,defender,der,striker,plays
+query3609	peace treaty,unity,praying,togetherness,killings,law,constitutional,legal,accordance,regulations
 query1908	cockroach
-query1053	foolish,eighties,age
-query1617	bottle,sizes,t-tv
-query375	news,broadcasters,anchors,weather,pakse,tanzaniameneja
-query483	by-election,aeshi,by-elections
+query1053	foolish,mitego,featuring,hurt,age
+query1617	bottle,pesa,freely,payments,available,m-pesa
+query375	news,broadcasting,writing,newspapers,newspaper,weather,procurement,meteorological,climatic,tma
+query483	by-election,chumbuni,ndesamburo,rally,kalenga
 query3485	hammer
-query3998	made tired
-query1408	picture,press,mkombe,hotel,hyatt,kempinski
-query1626	sugar factory
-query3539	invitation,tang,jinping,formal,donor,ratifying
+query3998	made tired,economically,opponents,described
+query1408	picture,journalists,press,photo,pictured,hotel,plaza,serena,regency,hyatt
+query1626	sugar factory,flour,plant,mtibwa
+query3539	invitation,vietnam,nane,republic,nyusi,formal,vuai,fenela,sectors,mukangala
 query2270	fickle
-query1641	orange,yu,essar,wisdom,bravery,stability
+query1641	orange,burundi,bharti,m-pesa,safaricom,wisdom,regulations,wealth,stability,eat
 query4035	abstained
-query1532	Singapore,redevelopment,sba,pig
-query1901	soccer,yanga,shirefa
-query1443	club,soccer,sunderland,match,game,croatia
-query1057	improve transportation
-query2022	bilharzia,bladder,elephantiasis
-query1802	rent,bungles,tyiga,house,state,multi-function
-query1852	horse,foreseen,kibaden
-query1787	shield,kindness,kauzu
-query3564	planet,radio,ea
-query2985	favor,obstruct,insufficient
-query1964	motorcycle,riders,taxis
-query3261	band,ffu,skylight
-query1405	drugs,anti-malarial,bio
+query1532	Singapore,redevelopment,straits,affordable,sba,pig
+query1901	soccer,yanga,hans,coach,pluijm
+query1443	club,leicester,coach,fc,soccer,match,played,vpl,league,mtibwa
+query1057	improve transportation,ease,effectiveness,efficiency
+query2022	bilharzia,elephantiasis,stomach,transmitted,worms
+query1802	rent,compensation,billion,trillion,dollars,house,sworn,cabinet,mmoja,state
+query1852	horse,trained,treated,versus,cooked,believed
+query1787	shield,champions,ruvu,kagame,mtibwa
+query3564	planet,bongo,enewz,fleva,aired
+query2985	favor,rules,feel,pinda,answer
+query1964	motorcycle,motorcycles,motorbike,boda,riders
+query3261	band,musical,aka,makunja,skylight
+query1405	drugs,counterfeit,medicine,treatments,drug
 query3793	donut
-query480	gun,homosexual,cafeteria
-query468	coffee,pulping,drinking
-query3515	stage,bira,rematches,South Africa
-query2015	ghost,kavati,absent
-query3814	cheetah,crocodile,monkeys
-query4344	fertilize,soil,loam,desertification
-query1635	paradise,planhotel,spa
-query1465	public enterprise
+query480	gun,bomb,shot,bullets,pounds
+query468	coffee,produces,ethiopian,airlines,drinking
+query3515	stage,entertaining,champions,uefa,dance,South Africa,southern,sudan,east
+query2015	ghost,salaries,studying,graduated,households
+query3814	cheetah,versus,lion,lyon,stade,ivory
+query4344	fertilize,soil,wells,terminal,toilets,cement
+query1635	paradise,planhotel,&,resort,seacliff,spa
+query1465	public enterprise,provision,governance,erm
 query1792	ditch
-query1910	tire,hid,modem
-query1816	pineapple,eaters,flies
-query1999	municipal,municipality,mayor
-query1541	Sahara,desert,alsi,infant mortality
-query4030	matches,champions,efl
-query1631	face,denmarks,challenges,earth,lifespan,heaven
-query1444	pipes,puddles,crude,pressure,bacterial,bp
-query3049	root,rectify,lasts
+query1910	tire,hearing,sin,bravo,bicycle
+query1816	pineapple,covering,selling,fruit,fruits
+query1999	municipal,mwenda,jerry,mayor,silaa
+query1541	Sahara,sipho,alsi,southern,desert,infant mortality,rates,deaths,maternal
+query4030	matches,champions,league,uefa,vpl
+query1631	face,solutions,facing,bayern,munich,earth,creatures,heaven,almighty,mercy
+query1444	pipes,gas,drilling,wells,crude,pressure,hiv,cells,blood,diabetes
+query3049	root,priority,wise,medicines,measures
 query1954	deforestation
-query2000	deputy mayor
-query2684	national team
-query3700	earthen cooking pot,water,benito,marinas
-query2908	toothless person
-query2021	elephantiasis,worms,bilharzia
-query1644	crisis,salvage,petitioners,solution,creatively,ofosu
-query1419	small group,party,ccm,lefty
-query472	factory,pulping,boot,strike,ankle,sharmila
-query3044	childhood,pregnancies,rede
-query2234	pilot,husky,aviat
+query2000	deputy mayor,excellency,mwenda,jerry,silaa
+query2684	national team,coach,stars,taifa
+query3700	earthen cooking pot,kilograms,rice,beans,flour,water,wells,supply,sewerage,clean
+query2908	toothless person,kill,everything,woman,someone
+query2021	elephantiasis,fever,transmitted,stomach,worms
+query1644	crisis,iptl,illegal,fishing,fishermen,solution,measure,agree,solving,solve
+query1419	small group,entrepreneurs,medium,photo,party,presidential,umbrella,ukawa,candidate
+query472	factory,calvin,tbl,breweries,plant,strike,jail,sleeping,vpl,consecutive
+query3044	childhood,knowing,fever,transmitted,pregnancies
+query2234	pilot,tape,aviation,ribbon,icao
 query2002	ledger
-query1817	rabbit,ntava,rabbits
-query484	stock exchange
-query1638	bishop,gwajima,revival
-query1406	vice president
-query1421	the most important thing
-query1645	knife,sacrificial,stabbed
-query1404	fish,lukewarm,whale
-query1988	bishop,gwajima,revival
+query1817	rabbit,breeder,rabbits,feeding,ntava
+query484	stock exchange,experiences,moremi,dse
+query1638	bishop,diocese,resurrection,josephat,gwajima
+query1406	vice president,bilal,suluhu,jakaya
+query1421	the most important thing,common,realize
+query1645	knife,poison,stomach,wounds,transmitted
+query1404	fish,small-scale,fruits,ferry,victoria
+query1988	bishop,diocese,resurrection,josephat,gwajima
 query1851	pork
-query1409	ambassador,leberata,liberatta,camera,relaxed,leaves
-query1975	marijuana,dice,rolls
-query2020	worms,elephantiasis,schistosomiasis
-query3518	congratulation,aijaz,romee,USA,river,edinburgh
-query1647	salute,kitwe,saluti
-query1054	secret service
+query1409	ambassador,seif,iddi,ombeni,sefue,camera,ribbon,phones,stolen,note
+query1975	marijuana,mlele,crops,slashed,boots
+query2020	worms,fever,bacteria,stomach,transmitted
+query3518	congratulation,tap,ntukamazina,khan,aijaz,USA,kunduchi,restaurant,ruaha,river
+query1647	salute,mart,cxc,kitwe,fredito
+query1054	secret service,clients,integrity,whatsapp
 query1096	flashlight
-query3360	museums,parks,wildlife
-query3835	telescope,evaluation,tubes,inclusion
-query1924	albinos,patches,disgracing,clinic,foreplan,dcmc
-query1461	Mogadishu,miraa,obstetric,farming,seaweed,mushroom
-query1086	imports,exports,random,chalk
-query3905	Russia,wynjones,kisamba,sanctions,imposed,homosexuality
-query1600	Babati,minjingu,magugu,dairy production
-query4357	green revolution,imperialism
-query1850	HPV,circumcision,initiation,rites
-query4103	tear gas,dispersing crowds
-query1551	Kakamega,political campaigning
-query1572	Tunduma,mkoma,nanyumbu,embezzlement,raises,suspicion
-query1981	cancer,breast,cervical,skin,disability,albino
-query1244	dinner,organizes,cui,cup,finals,zaweda
-query1797	poverty,alleviate,prevails,milk,fukeni,inuka
-query4301	intersection,accident,incorporeal,driver
-query1933	boxing,tpbc,cheka,shoes,sew,weaving
-query1537	Clinton,hillary,orc,apology,non-mandatory,tanwater
-query1847	enemy,separation,loving,fly,flag,forty
-query1913	pollution,hygiene,cleanliness,needle,razor,sharp
-query493	transportation,infrastructure,tooku,boat,ho-shil,alight
-query2566	Kisumu,tandika,mwembe,funeral,mahamudu,mkaidi
-query4096	sugar factory,produce,audios,obstructing
-query1943	disability,skin,albino,crocodile,cheetah,skins
-query4406	brick,filberto,thatch,construct,palaces,furnished
-query1014	building,construction,capacity,Ummy Mwalimu
-query1083	education,abdulmaalik,jenester,make noise
-query2620	liberation,frelimo,mozambique,Chad,njamena,profitability
-query1814	flooding,lowlands,floods,goat,golding,alps
-query1927	India,kaushik,deepak,weapon,unregistered,suspecting
-query3901	terms of reference,investigation,investigations,comprehensively
+query3360	museums,tourist,wildlife,climbing,tanapa,parks
+query3835	telescope,evaluation,agricultural,cleanliness,inspection,monitoring
+query1924	albinos,tas,disability,albino,killings,clinic,testing,orphanage,mzige,patients
+query1461	Mogadishu,somalia,cargo,bundles,miraa,farming,small-scale,agricultural,climate,farmers
+query1086	imports,flow,evade,importation,sugar,chalk
+query3905	Russia,migombani,paris,france,kisamba,sanctions,kagame,yoweri,museveni,uganda,sudan
+query1600	Babati,rujewa,sumbawanga,tarime,simanjiro,dairy production,industries,dairies,processing
+query4357	green revolution,revolutionary,jkt,shein,imperialism
+query1850	HPV,circumcision,men,chyna,suffering,male
+query4103	tear gas,oil,natural,crude,processing,dispersing crowds,mafinga,hundreds,shot,sudan
+query1551	Kakamega,political campaigning,candidate,contestant,aspirant
+query1572	Tunduma,longido,kondoa,tunduru,nanyumbu,embezzlement,trafficking,allegedly,possession,suspicion
+query1981	cancer,diabetes,screening,cervical,breast,skin,disabilities,disorders,albino,disability
+query1244	dinner,exim,marie,specifically,iftar,cup,semi-finals,championships,championship,finals
+query1797	poverty,someone,escape,crops,communities,milk,asas,meat,vwawa,dairies
+query4301	intersection,accident,died,driver,injuries,incident
+query1933	boxing,federation,sport,cheka,tpbc,shoes,shoe,clothes,boots,sewing
+query1537	Clinton,trump,donald,republican,hillary,apology,manifesto,consent,president-elect,cha
+query1847	enemy,transmitted,criticize,friend,brothers,fly,ukawa,mate,aviation,flag
+query1913	pollution,damage,cleaning,cleanliness,mortality,needle,transmitted,infected,hiv,virus
+query493	transportation,expansion,sites,passengers,cargo,boat,dirty,driver,ferry,mv
+query2566	Kisumu,mbagala,bar,mwembe,tandika,funeral,mandela,jafary,farewell,nelson
+query4096	sugar factory,flour,plant,mtibwa,produce,generating,farm,solar,megawatts
+query1943	disability,disorders,disabilities,albino,skin,crocodile,versus,lion,lyon,ivory,stade
+query4406	brick,iron,cement,sheets,classrooms,construct,constructing,washrooms,constructed,affordable
+query1014	building,constructing,construction,capacity,stone,Ummy Mwalimu,elderly,gender,nyerere
+query1083	education,gel,abdulmalik,link,vocational,make noise,beings,xp,sure
+query2620	liberation,marathon,filipe,mozambique,nyusi,Chad,capital,rates,clove,improve,congestion
+query1814	flooding,mbweni,injuries,rains,floods,goat,goats,janin,benoit,zantel
+query1927	India,study,joyce,corporation,sangho,weapon,caught,robbery,virus,possession
+query3901	terms of reference,jenista,accordance,criteria,investigation,accusations,suspect,criminal,investigations
 query1652	grandparent
-query1178	poultry,profitable,hostel
-query498	ocean,indian,shoreline
-query4144	salary increase
-query1214	the eye
-query4139	white clothing
-query4000	combating malaria
-query1331	geometric shapes
-query3481	major appliances
-query3217	courts,files,mwanzo
-query4154	accident insurance
-query4137	child vaccination
-query2032	women's soccer
-query3292	car fuels
-query4148	selling cows
-query1521	seminar,march-,one-day
-query3524	black,sailor,overlaps,color,tribe,inferior
-query1030	under the bed
-query1721	afternoon,airport-le,guesthouse
-query1495	pregnant,breastfeeding,infants,neighbor,thuita,serpent
-query2933	increase,reduce,profitability,price,throw-away,cost
-query3647	cashew,nuts,akiingiaikulu
-query1865	entrepreneurship,blank,internship
-query2017	lawyer,lukosi,mwitasi
-query993	speech,mwasamale,giving,death,kunduz,auschwitz
-query1598	elephant,costed,$m
-query2725	chemist,manyele,mwageni
-query2731	bacteria,treponema,transmitted
-query2959	finally,gallu,maximillian,Bukoba,kataiba,kinawiro
-query1745	Nyanza,bottling,uluguru,country,world,unfairness
-query1974	mirror,rear,russians
-query988	police report
-query1985	shadow,sera,assitant
-query2447	cultural heritage
-query1707	warning,misusing,stern,catalog
-query3120	shoulder to shoulder
-query1960	gun,homosexual,cafeteria,defense,apparatus,ready-made
-query3215	predecessors,kisimandui,revolution
+query1178	poultry,washrooms,mwenda,inspecting,stone
+query498	ocean,shoreline,cancer,kilwa,indian
+query4144	salary increase,paid,collection,taxing
+query1214	the eye,award,tests,couples
+query4139	white clothing,dent,bifida,buffalo
+query4000	combating malaria,infections,bureau,prevention
+query1331	geometric shapes,kwa,beings,za,hiv,virus
+query3481	major appliances,kijuu,internal,rwegasira,projest
+query3217	courts,files,court,songea,magistrate
+query4154	accident insurance,chf,fund,nhif
+query4137	child vaccination,maternal,diabetes,pregnant
+query2032	women's soccer,association,commemorate,football
+query3292	car fuels,edom,ist,vehicle,toyota
+query4148	selling cows,phones,fruit,goods,airtime
+query1521	seminar,two-day,presentation,workshop,one-day
+query3524	black,mali,friendly,americans,sailor,color,colors,inferior,religion,tribe
+query1030	under the bed,muhimbili,mattresses,sheets,mnh
+query1721	afternoon,nyehunge,morning,evening,rally
+query1495	pregnant,maternal,birth,deaths,pregnancy,neighbor,fair,nyusi,kanye,shouldnt
+query2933	increase,income,reduce,increasing,increased,price,costs,cost,cargo,affordable
+query3647	cashew,maize,nut,hectares,nuts
+query1865	entrepreneurship,vocational,skills,opportunities,educate
+query2017	lawyer,kisutu,magistrate,lissu,tundu
+query993	speech,presentation,two-day,remarks,thanks,death,injuries,deaths,killed,cause
+query1598	elephant,costed,dollars,pounds,equivalent
+query2725	chemist,tamisemi,controller,chande,auditor
+query2731	bacteria,fever,worms,infected,transmitted
+query2959	finally,agents,months,apologized,lover,Bukoba,jafary,kagera,aga,mafinga
+query1745	Nyanza,utilities,bottling,mine,nane,country,alvaro,nations,world,undp
+query1974	mirror,cooked,light,nor,musicians
+query988	police report,mpinga,sirro,force,commander
+query1985	shadow,opposition,harrison,affairs,minerals
+query2447	cultural heritage,zulmira,undp,rodrigues,unesco
+query1707	warning,licenses,identification,issued,stern,catalog
+query3120	shoulder to shoulder,campaigning,citizensvillagers,mgimwa,ilalasimba
+query1960	gun,bomb,shot,bullets,pounds,defense,force,lieutenant,forces,security
+query3215	predecessors,publicity,revolutionary,politician,civic,revolution
 query2498	fisherman
-query3583	beautiful girl,Kenya,rwanda,lesotho
-query2031	property,destruction,loss,bank,nmb,witts
-query3390	green,tranait,warriors
-query1868	fraudulent,bail,swipe
-query1683	kilometer,vosta,aclati
-query1858	national symbol
-query2956	potatoes,frying,roasting
+query3583	beautiful girl,blac,sepetu,chyna,Kenya,museveni,burundi,uganda,rwanda
+query2031	property,intellectual,destroying,loss,destruction,bank,exim,bussemaker,nmb,crdb
+query3390	green,ruvu,jkt,warriors,versus
+query1868	fraudulent,anywhere,client,sim,regency
+query1683	kilometer,kili,kilometers,race,marathon
+query1858	national symbol,mchechu,cutting,ribbon
+query2956	potatoes,boiling,frying,bananas,cooked
 query3748	stalk
-query4183	recently,yesterday,was,visit,tour,visiting
-query3008	coordinator,riksfobundet,lillberg,celebration,celebrations,commemoration
-query1719	back,boccos,israelites
-query1491	delicate,sunlight,mwingira
-query1984	the American dream
+query4183	recently,wema,arrested,opened,visited,visit,visited,visiting,inspect,tour
+query3008	coordinator,alvaro,nations,sexual,undp,celebration,celebrations,commemorating,commemoration,anniversary
+query1719	back,okoye,home,numbers,return
+query1491	delicate,sangho,mzige,sunlight,ntukamazina
+query1984	the American dream,tyga,equivalent,dollars
 query1036	rat
-query982	living with diabetes
-query728	guest of honor
+query982	living with diabetes,mental,cancer,hiv
+query728	guest of honor,easter,welcoming,official
 query3736	fugitives
-query984	sugar,mtibwa,ntala
-query2003	vitamin,carbohydrates,pastures
-query3309	name,mjenzi,timochenko,girl,withheld,naida
-query1713	bread,slice,avocado
-query4040	cheese,album,ngomani
+query984	sugar,mgambo,versus,mkwakwani,mtibwa
+query2003	vitamin,beds,bed,mosquito,sexually,transmitted
+query3309	name,esma,wa,father,popularly,girl,withheld,blac,chyna,child
+query1713	bread,soap,kilograms,rice,flour
+query4040	cheese,kardashian,song,release,&,album
 query1501	spit
-query1714	body,supersedes,usta,respect,inadequacies,admonition
-query1693	banana,tcaas,ukonga
-query1853	furniture,manufacture,interior
-query2006	potassium,hydroxide,microscope
-query3612	finger,mwaikendas,bikini
-query3590	govern,flag,bearer,flying
-query3366	inherited,privatized,summed
-query1146	bible,sedrick,ndonde
-query3500	woke up in the morning
-query1670	title,recapture,deed,return,specialization,mourinhio
+query1714	body,stomach,cells,blood,late,respect,parties,tell,mandela,nelson
+query1693	banana,cleanup,lumumba,tcaas,ukonga
+query1853	furniture,sewing,items,tools,domestic
+query2006	potassium,swelling,symptoms,cooked,mix
+query3612	finger,jesus,sister,ring,husband
+query3590	govern,flag,pindi,consent,vietnam,fly
+query3366	inherited,debts,billion,per,trillion,equivalent
+query1146	bible,church,kkkt,restoration,archbishop
+query3500	woke up in the morning,afternoon,evening,oclock
+query1670	title,deeds,championship,league,premier,return,score,proceed,returning,back
 query1951	nosebleed
-query1672	twin,dorice,premature
-query1989	fireworks,blasting,nyamohanga
-query2958	albino,disorders,skin
-query2971	smokers,cigarette,hundred
-query1691	king,vi,majesty,song,video,moyoni
-query3397	prostitution,involvement,homosexuality
-query4286	braid hair
-query1941	wall,dictatorship,weaken
+query1672	twin,babies,mollel,doris,premature
+query1989	fireworks,mistakes,milanzi,buses,superintendent,specially
+query2958	albino,disabilities,disorders,skin,disability
+query2971	smokers,cigarette,equivalent,dollars,per,hundred
+query1691	king,yusuf,mohammed,morocco,vi,song,kiba,featured,platnumz,video
+query3397	prostitution,infected,aids,hiv,involvement,virus
+query4286	braid hair,&,xp,bifida,safaris
+query1941	wall,trump,undp,president-elect,strong
 query3288	comb
-query2899	militia,islamic,iraq
-query2976	State house
-query1023	letter,mwambega,dated,condolences,bereaved,bereaveds
-query2023	institution,institute,nit,seminar,march-,one-day
-query3159	club,soccer,sunderland,entertainment,tukulanga,baranaba
-query1728	temporary work
-query3018	axe,attempting,khamughisa
-query1864	interpreter,changzhi,chen
-query1340	court,mgonjas,courtsresident
-query1688	bucket,liter,tank
-query1866	editor,daima,jackton
-query1519	well,so,metallic,village,district,kiselya
-query1871	Chinese culture
+query2899	militia,fighters,syria,iraq,islamic
+query2976	State house,sworn,cabinet,lumumba
+query1023	letter,fifa,sent,written,registrar,condolences,almighty,jamal,farewell,malinzi
+query2023	institution,moi,institutions,research,institute,seminar,two-day,presentation,workshop,one-day
+query3159	club,leicester,coach,fc,soccer,entertainment,flavor,cxc,fredito,dance
+query1728	temporary work,regulations,wells,households
+query3018	axe,sound,attempting,legs,shot
+query1864	interpreter,sumaye,bilal,gharib,chen
+query1340	court,kisutu,magistrates,appeal,magistrate
+query1688	bucket,tank,fine,liter,dummy
+query1866	editor,jamhuri,meena,neville,newspaper
+query1519	well,known,performed,harvesting,so,village,karatu,rufiji,mkuranga,igunga
+query1871	Chinese culture,nape,nnauye,arts
 query1729	e-mail
-query3934	smell,critically,barren
-query1885	talent,search,talents,artist,music,khaleed
-query1718	clap,demonstrate,muleba
-query1681	license,tdfa,gsi
+query3934	smell,easy,answer,poles,simple
+query1885	talent,flavor,movie,talents,search,artist,hip-hop,bongo,fleva,flavor
+query1718	clap,demonstrate,kabwe,zitto,muleba
+query1681	license,allocate,mean,cargo,certificate
 query1230	spoon
-query3402	decorate,weddings,luvtouch,lady,salma,samoa
-query3636	private part
-query3113	breakfast,bongwe,amplifaya
-query2503	kitchen,bathrooms,bedrooms
-query3290	desk,marcela,samples
-query1993	gasoline,retail,petroleum
-query4047	emotion,chameleon,grind,forgiveness,forgive,confess
-query3041	friend,mwengi,ex-wife,farm,noors,acres
-query716	strengthen,improve,maintain,bond,guarantor,thorough
-query1785	window,shuttered,efl
-query3517	bid for
-query1338	debt,repay,owe,debate,moderated,clinton
-query3977	hub,abijan,koafec,commerce,lukemelelo,jolanda
-query701	healthcare,checkup,provision
-query4001	labor force,percentage,laboratorys,nutrient
-query1335	bring change
-query2025	agricultural policy
+query3402	decorate,conducive,particular,nomination,weddings,lady,janeth,suluhu,wama,salma
+query3636	private part,sectors,foundation,sector
+query3113	breakfast,aired,xxl,clouds,fm
+query2503	kitchen,sees,loves,pick,feels
+query3290	desk,prisca,samples,inspector,gender
+query1993	gasoline,prices,ewura,petrol,retail,petroleum
+query4047	emotion,mosquito,married,certain,word,thing,forgiveness,kardashian,lover,nick,kylie
+query3041	friend,lover,brothers,dimpoz,ommy,farm,produce,crops,farms,acres
+query716	strengthen,collection,inspect,strengthening,create,bond,assad,lover,album,fine
+query1785	window,hans,okwi,seasons,vpl
+query3517	bid for,ceremony,bidding,goodbye,farewell
+query1338	debt,equivalent,billion,dollars,trillion,debate,submitting,mate,clinton,draft
+query3977	hub,asian,mozambique,eac,ivory,commerce,molel,twccia,nbc,chamber
+query701	healthcare,maternal,provision,access,sanitation
+query4001	labor force,commander,mahanga,superintendent,percentage,benefited,muhongo,fever,losses
+query1335	bring change,grow,digital,climate
+query2025	agricultural policy,farming,coordination,agriculture
 query1982	makeup
-query1725	sister,gemma,eldest,morning,evening,oclock
-query1496	media,doomed,sarcastic,English,excepting,gure
-query1487	money,swiping,upkeep,Kikuyu,mkoyi,zaituni
-query409	business,agricultural,exhibition,poverty,alleviate,prevails
-query1520	attack,israels,westgate,Facebook,twitter,pages
-query1040	slavery,housewife,imebaki,donkey
-query2024	beauty,maya,crowned,scissors,pair,specially
-query3747	cell,integrated,trough,stigma,diagnosed,hiv
-query3758	flood,mwanakwere,mwanakwerekwe,assistance,nola,cwca
-query1887	China,pcp,donggan,manufacturing,seals,lightest
-query3903	defense,apparatus,ready-made,relative
-query1921	Kagera,carmel,achileus,natural disaster
-query4275	fight for justice,legal,berious,action
-query1018	fast,streamlining,ukiangali,Ramadan,baltadhar,steward
+query1725	sister,kylie,kardashian,jenner,mary,morning,fm,afternoon,evening,oclock
+query1496	media,newspapers,social,editors,networks,English,uefa,league,vpl,premier
+query1487	money,airtel,pesa,sending,m-pesa,Kikuyu,usia,ledama,teacher,nkhoma
+query409	business,medium,agricultural,saba,exhibition,poverty,someone,escape,crops,communities
+query1520	attack,killed,bomb,attacks,injured,Facebook,instagram,page,whatsapp,twitter
+query1040	slavery,chemical,population,album,expo,donkey
+query2024	beauty,fashion,miss,crowned,redds,scissors,studio,washrooms,pair,specially
+query3747	cell,airtime,via,galaxy,phones,stigma,sexually,transmitted,infections,virus,hiv
+query3758	flood,nyarugusu,mwanakwere,mwanakwerekwe,victims,assistance,unesco,educational,measures,access
+query1887	China,universities,dongguan,communist,jian,manufacturing,factory,limited,promotions,processing
+query3903	defense,force,lieutenant,forces,security,relative
+query1921	Kagera,jkt,bukoba,mtibwa,sugar,natural disaster,tourism,gas,resources
+query4275	fight for justice,omar,othman,chande,legal,rights,stern,action,measures
+query1018	fast,speed,gwajima,growing,lte,Ramadan,baltadhar,ntalikwa,omary,justin
 query3784	peanut,snack
-query1918	Chama cha Mapinduzi,mining,nmdc,revocation
-query3345	alcohol,gestational,moderately,driving,habitation,foolishness
-query3692	colors,images,meanings,bolt
-query3737	abroad,msimba,universities,laborer
-query743	social media,university student
-query1977	dermatology,juice,drinks,soda
-query1950	witchcraft,dubiety,moreme,lizard
-query3721	orphan,matitu,hazina,school,primary,secondary
-query1782	Mwanza,manyara,dodoma,fishing,fishermen,livestock
-query1568	Sumbawanga,ikuo,fyengerezya,hospital,bryceson,muhondezi
-query2011	peace,compatibility,serenity,Muslim,brotherhood,sacpfortunatus
-query3950	industrial sector,economic problem
-query1779	Morogoro,manugu,justian,banking,fahari,filbert
-query4366	egg,avocado,slice,nutrition,mkindo,panita
-query4131	Temeke,hoja,gutti,living standard
-query3805	customs,territory,single,merchandise
-query1219	branches of government
-query1332	rooms of a house
-query1744	AIDS,virus,hiv
-query3418	parking facility
-query2630	election do-over
-query3060	dairy product
-query4162	sanitation,duwasa,dwssp
-query4160	skin bleaching
-query3201	root vegetable
-query3054	passenger aircraft
-query3604	citrus fruit
-query4177	birth control
-query2622	amending the constitution
-query1967	chemicals,toyama,t-,mango,garden,kikonongo
-query4309	lorry,bomb,bomber,life,defect,feeds
+query1918	Chama cha Mapinduzi,maendeleo,demokrasia,mining,mineral,minerals,processing,stamico
+query3345	alcohol,cigarettes,affects,drinking,pregnancy,driving,meters,motor,buses,drivers
+query3692	colors,certain,color,associated,meanings,bolt
+query3737	abroad,link,universities,gel,abdulmalik,laborer
+query743	social media,editors,facebook,networks,university student,diploma,degree,graduation
+query1977	dermatology,juice,foods,cold,drink,drinks
+query1950	witchcraft,hiv,inferior,viruses,color,lizard
+query3721	orphan,orphanage,hawa,maji,matitu,school,teacher,buyuni,secondary,primary
+query1782	Mwanza,simanjiro,sumbawanga,mbeya,manyara,fishing,fisheries,illegal,livestock,fishermen
+query1568	Sumbawanga,chato,rukwa,kahama,ilemela,hospital,khan,referral,muhimbili,mnh
+query2011	peace,praying,togetherness,killings,stability,Muslim,traffic,riders,men,false
+query3950	industrial sector,developing,domestic,industries,economic problem,challenges,economy,growth
+query1779	Morogoro,tanga,kagera,shinyanga,pwani,banking,nsekela,filbert,abdulmajid,m-pesa
+query4366	egg,abusive,ring,avocado,nay,nutrition,awareness,vital,particularly,maternal
+query4131	Temeke,mbagala,sophia,mjema,ilala,living standard,below,population,hiv
+query3805	customs,tax,collection,single,territory,merchandise
+query1219	branches of government,local,banks,tamisemi,m-pesa
+query1332	rooms of a house,cabinet,injured,state
+query1744	AIDS,infections,infected,hiv,virus
+query3418	parking facility,contrary,mafinga,fish
+query2630	election do-over,candidates,electoral,manifesto,elections
+query3060	dairy product,gross,domestic,processing
+query4162	sanitation,sewerage,ewura,zungu,supply
+query4160	skin bleaching,disabilities,disorders,albino,disability
+query3201	root vegetable,kinds,warm,seedlings,fishermen
+query3054	passenger aircraft,transit,terminal,buses
+query3604	citrus fruit,foods,lemons,fruits
+query4177	birth control,patients,muhimbili,elephants
+query2622	amending the constitution,ukawa,regulations,constitutional,article
+query1967	chemicals,domestic,fishermen,cells,blood,mango,tree,trees,resort,garden
+query4309	lorry,accident,suspect,suicide,bomb,life,daily,resurrection,church,gwajima
