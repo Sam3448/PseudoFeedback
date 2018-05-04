@@ -18,6 +18,7 @@ public class Evaluation {
      * */
     private static String searchOutputFilePath;
     private static String getSearchOutputFilePath;
+    private static String eachQueryEvalFilePath;
 
     Map<String, Map<String, String>> totalConfig;
 
@@ -45,6 +46,7 @@ public class Evaluation {
 
         searchOutputFilePath = config.get("searchOutputFilePath".toLowerCase());
         getSearchOutputFilePath = config.get("getSearchOutputFilePath".toLowerCase());
+        eachQueryEvalFilePath = config.get("eachQueryEvalFilePath".toLowerCase());
     }
 
     public Set<String> getEvaluateQueryId() throws IOException{ // 用的是reference的file path
@@ -75,7 +77,10 @@ public class Evaluation {
 
         ClassPathResource searchPath = new ClassPathResource(searchOutputFilePath);
         ClassPathResource refPath = new ClassPathResource(referenceFilePath);
+        ClassPathResource queryEvalPath = new ClassPathResource(eachQueryEvalFilePath);
         File searchFile = searchPath.getFile(), refFile = refPath.getFile();
+        File queryEvalFile = queryEvalPath.getFile();
+        FileWriter evalfw = new FileWriter(queryEvalFile);
         HashMap<String, HashSet<String>> refQuery2File = new HashMap();
         HashMap<String, TreeSet<Cell>> searchQuery2File = new HashMap();
 
@@ -93,7 +98,7 @@ public class Evaluation {
         BufferedReader brref = new BufferedReader(new InputStreamReader(new FileInputStream(refFile)));
         String refLine = "";
         while ((refLine = brref.readLine()) != null) {
-            String[] temp = refLine.trim().split("\\s");
+            String[] temp = refLine.trim().split(" ");
             String queryId = temp[0], relatedFile = temp[2];
             double relateLevel = Double.parseDouble(temp[3]);
 
@@ -117,6 +122,9 @@ public class Evaluation {
         }
         brsearch.close();
 
+//        System.out.println(refQuery2File.size());
+//        System.out.println(searchQuery2File.size());
+//        System.exit(0);
         //Get total number of documents
         ES es = new ES(totalConfig.get("ES"));
         int N_total = (int)es.getMatchAllResults(doc_index, doc_type, field, 0).getHits().getTotalHits();
@@ -173,6 +181,7 @@ public class Evaluation {
                     precision_addup += N_match / count;
                 }
             }
+
             total_miss += N_miss;
             total_match += N_match;
 
@@ -182,6 +191,8 @@ public class Evaluation {
             double P_FA = (N_FA * 1.0) / (N_total - N_relevant);
             double AP = precision_addup / N_relevant;
             total_AP += AP;
+
+            evalfw.write(String.format("%s\tMiss: %d\tMatch: %d\tPrecision_addup: %.5f\tN_FA: %d\n", queryId, N_miss, N_match, precision_addup, N_FA));
 
             scores.put(queryId, 1.0 - (P_miss + beta * P_FA));
 
@@ -201,12 +212,15 @@ public class Evaluation {
         System.out.println("****************RESULT******************");
         //System.out.println("Final AQWV =\t" + AQWV);
         System.out.println("Final P_miss =\t" + P_overall_miss);
-        //System.out.println("Final P_FA =\t" + P_overall_FA);
+        System.out.println("Final P_FA =\t" + P_overall_FA);
         //System.out.println("Final P_precision =\t" + P_overall_precision);
-        System.out.println("Final P_recall =\t" + P_overall_recall);
+        //System.out.println("Final P_recall =\t" + P_overall_recall);
         //System.out.println("Final F1 =\t" + P_overall_F1);
         //System.out.println("Final MAP =\t" + MAP);
+        System.out.println("total_retrieved =\t" + total_retrieved);
         System.out.println("****************/RESULT*****************");
+
+        evalfw.close();
     }
 
     /**

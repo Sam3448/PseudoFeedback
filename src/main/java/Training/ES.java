@@ -66,7 +66,7 @@ public class ES {
      * */
 
     public void ESsearchQueryFile(String extendQueryPath, String queryResultPath,
-                                         String doc_index, String doc_type, String field) throws IOException{
+                                  String doc_index, String doc_type, String field) throws IOException{
         //Get query file
         ClassPathResource srcPath = new ClassPathResource(extendQueryPath);
         File extendQueryFile = srcPath.getFile();

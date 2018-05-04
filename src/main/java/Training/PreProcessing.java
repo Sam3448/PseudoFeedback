@@ -3,7 +3,7 @@ package Training;
  * Created by SamZhang on 2/14/18.
  *
  * Util class. Change the raw MT data format to a pure English/Swahili file.
-**/
+ **/
 import org.datavec.api.util.ClassPathResource;
 
 import java.io.BufferedReader;
@@ -21,13 +21,14 @@ public class PreProcessing {
     static String swOutputFile;
     static String enOutputFile;
     static String goldOutputFile;
+    static String engoldOutputFile;
 
     static String text, audio;
     static HashMap<String, String> sw = new HashMap(), en = new HashMap();
 
     /**
-    * Initialize all parameters
-    * */
+     * Initialize all parameters
+     * */
     public static void init(Map<String, String> config) throws IOException{
         inputFile = config.get("inputFile".toLowerCase());
         text = config.get("textFile".toLowerCase());
@@ -37,6 +38,7 @@ public class PreProcessing {
         swOutputFile = input.getParentFile() + "/sw.txt";
         enOutputFile = input.getParentFile() + "/en.txt";
         goldOutputFile = input.getParentFile() + "/GOLD.txt";
+        engoldOutputFile = input.getParentFile() + "/en_MT_GOLD.txt";
     }
 
 
@@ -77,7 +79,7 @@ public class PreProcessing {
 
         extend_MT();
 
-        return new String[]{swOutputFile, enOutputFile, goldOutputFile};
+        return new String[]{swOutputFile, enOutputFile, goldOutputFile, engoldOutputFile};
     }
 
 

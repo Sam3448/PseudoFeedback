@@ -13,7 +13,7 @@ import java.util.Set;
  * Created by SamZhang on 2/21/18.
  */
 public class test {
-    public static void main(String[] args) throws IOException {
+    public static void getTestResult() throws IOException {
         Path input = Paths.get("/Users/SamZhang/Documents/RA2017/Pseudo/PseudoFeedback/target/classes/Config/pseudo.cfg");
         System.out.println(input.toAbsolutePath());
         Ini ini = new Ini().read(input);
@@ -26,6 +26,6 @@ public class test {
         Set<String> changedQuery = e.getEvaluateQueryId();
 
         e.getScore("MTDoc/1A.qrel", "sw-en-analysis",
-                          "doc", "gold", true, changedQuery);
+                "doc", "gold", true, changedQuery);
     }
 }

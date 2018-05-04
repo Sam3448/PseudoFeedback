@@ -52,7 +52,7 @@ public class WordRepresentation {
     private static Map<String, Map<String, String>> totalConfig;
 
     private static boolean Train;
-    private static String modelPath, extendQueryPath, originalQueryPath, copyQueryPath, changedQueryPath;
+    private static String modelPath, extendQueryPath, originalQueryPath, copyQueryPath, changedQueryPath, StopWordFile;
     private static String queryResultPath;
     private static String doc_index, doc_type, field;
 
@@ -84,6 +84,7 @@ public class WordRepresentation {
 
         extendQueryPath = wordRepConfig.get("extendQueryPath".toLowerCase());
         queryResultPath = wordRepConfig.get("queryResultPath".toLowerCase());
+        StopWordFile = wordRepConfig.get("stopWordPath".toLowerCase());
 
         changedQueryPath = wordRepConfig.get("changedQueryPath".toLowerCase());
 
@@ -112,7 +113,7 @@ public class WordRepresentation {
             PreProcessing.init(totalConfig.get("PreProcessing"));
             PreProcessing.processing();
             String[] sw_enFile = PreProcessing.fileOutput();
-            w2v.trainW2v(sw_enFile[2], log);
+            w2v.trainW2v(sw_enFile[3], log); //1 = en, 2 = GOLD, 3 = en_GOLD
         }
         else{
             //Exception
@@ -127,7 +128,7 @@ public class WordRepresentation {
             //Pseudo feedback and query extension
             for(int i = 0; i < PSEUDO_LOOP; i++) {
                 //Step 3: extend query file
-                w2v.loadAndTestW2v(modelPath, copyQueryPath, extendQueryPath, changedQueryPath, log);
+                w2v.loadAndTestW2v(modelPath, copyQueryPath, extendQueryPath, changedQueryPath, StopWordFile, log);
 
                 //Step 4: ES for result file
                 ES es = new ES(totalConfig.get("ES"));
@@ -137,6 +138,9 @@ public class WordRepresentation {
                 //Pseudo feedback to copy query file
                 pseudoFeedback();
             }
+
+            //***get eval result
+            test.getTestResult();
         }
     }
 
@@ -220,7 +224,7 @@ class W2VModel{
 
         word2vec.fit();
 
-        String modelPath = inputFile.substring(0, inputFile.lastIndexOf('/')) + "/w2vmodel.txt";
+        String modelPath = inputFile.substring(0, inputFile.lastIndexOf('/')) + "/w2vmodel_en_gold.txt";
 
         log.info("writing model file to path :" + modelPath);
 
@@ -237,13 +241,22 @@ class W2VModel{
 
 
     public void loadAndTestW2v(String modelPath, String originalQueryPath,
-                                      String extendQueryPath, String changedQueryPath, Logger log) throws IOException {
-        Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel(new ClassPathResource(modelPath)
-                .getFile()
-                .getAbsolutePath());
+                               String extendQueryPath, String changedQueryPath,
+                               String StopWordFile, Logger log) throws IOException{
+
+        Map<String, double[]> word2emb = new HashMap();
+        String absolutePath = new ClassPathResource(modelPath).getFile().getAbsolutePath();
+
+        if(modelPath.matches(".*w2vmodel.*")) {
+            Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel(absolutePath);
+            word2emb = getEmbeddingMatrix(word2Vec);
+        }
+        else{
+            word2emb = getEmbeddingMatrix(absolutePath);
+        }
 
         //Check out vocab words
-        Collection<String> vocab = word2Vec.getVocab().words();
+        Collection<String> vocab = word2emb.keySet();
 
         FileWriter fw = new FileWriter(changedQueryPath);
         for(String s : vocab){
@@ -256,20 +269,21 @@ class W2VModel{
         root = prefixsearch.buildeTrieRoot(vocab);
 
         //word2vec done. extend query
-        extendQuery(originalQueryPath, extendQueryPath, word2Vec, log);
+        extendQuery(originalQueryPath, extendQueryPath, StopWordFile, word2emb, log);
     }
 
     /**
-    * Extend query file based on the model trained by Word2Vec.
-    * Now only look for nearest words for each query.
-    *
-    * Problems needs to be solved:
-    *   1. How to deal with phrases ignore or word by word or parse and get the nouns or verbs
-    *   2. How to deal with OOVs(currently replace with ".") ==> ignore
-    *   3. Python version?
-    * */
+     * Extend query file based on the model trained by Word2Vec.
+     * Now only look for nearest words for each query.
+     *
+     * Problems needs to be solved:
+     *   1. How to deal with phrases ignore or word by word or parse and get the nouns or verbs
+     *   2. How to deal with OOVs(currently replace with ".") ==> ignore
+     *   3. Python version?
+     * */
 
-    public void extendQuery(String originalQueryPath, String extendQueryPath, Word2Vec word2Vec, Logger log) throws IOException{
+    public void extendQuery(String originalQueryPath, String extendQueryPath, String StopWordFile,
+                            Map<String, double[]> word2emb, Logger log) throws IOException{
         ClassPathResource srcPath = new ClassPathResource(originalQueryPath);
         if(! srcPath.getFile().exists()){
             log.info("Please import query file (Parsed) for extension.");
@@ -288,8 +302,6 @@ class W2VModel{
         int countOOV = 0;
         int totalWords = 0;
 
-
-
         while((line = br.readLine()) != null){
             if(line.startsWith("query_id")){
                 continue;
@@ -306,46 +318,50 @@ class W2VModel{
 
             for(String curWord : w){
                 if(curWord == null || curWord.length() == 0 || curWord.trim().length() == 0) continue;
-
-                Collection<String> wordList = new ArrayList();
                 totalWords++;
 
-                //replaceWord 就是当前query的表征词, 一个词的query就是query本身，词组才会选择出表证词
-                String representWord = curWord.trim();
-//                if(representWord.contains(" ")){
-//                        List<String> rankedWords = extractWords(representWord);
-//                        representWord = rankedWords.get(0);//highest score
-//                }
+                curWord = curWord.trim();
+                String[] curQueryWords = null;//将不管是词还是词组都放进一个array中
+                if(curWord.contains(" ")){
+                    curQueryWords = curWord.split(" ");
+                }
+                else curQueryWords = new String[]{curWord};
 
                 //进行预处理，对于本来就在vocab的词没有任何影响，对于不在的筛除可能的标点
-                representWord = representWord.trim();
-                representWord = commonpreprocessor.preProcess(representWord);
-
-
-                //进行prefix match with tolerance of left_over length.
-//                if(!word2Vec.hasWord(representWord)){
-//                    System.out.println("Prefix before : " + representWord);
-//                    representWord = prefixsearch.searcPrefix(representWord, root, tolerance); //Low precision. Need Improvement.
-//                    System.out.println("Prefix after : " + representWord);
-//                }
-
-
-                if(representWord != null && word2Vec.hasWord(representWord)){//query word in vocab, extend straightly
-                    wordList = word2Vec.wordsNearest(representWord, NEARWORDS);
-                    expandAtLeastOneWord = true;
-                    System.out.println();
+                boolean prefixMatch = false;
+                for(int i = 0; i < curQueryWords.length; i++) {
+                     curQueryWords[i] = commonpreprocessor.preProcess(curQueryWords[i].trim());
+                    //进行有tolerance的prefix matching
+                     if(prefixMatch){
+                         if(!word2emb.containsKey(curQueryWords[i])){
+                             System.out.println("Prefix before : " + curQueryWords[i]);
+                             curQueryWords[i] = prefixsearch.searcPrefix(curQueryWords[i], root, TOLERANCE); //Low precision. Need Improvement.
+                             System.out.println("Prefix after : " + curQueryWords[i]);
+                         }
+                     }
                 }
-                else{ //OOV
+
+                List<String> wordList = getNearestWords(word2emb, curQueryWords, NEARWORDS, StopWordFile);
+                System.out.println("Before : " + curWord);
+                if(wordList.size() == 1 && wordList.get(0).equals("NOMATCH")){
                     countOOV++;
-                    System.out.println("Before : " + curWord + "\tAfter : " + (representWord.length() == 0 ? "NONE" : representWord) + '\n');
+                    System.out.println("After : OOV_NONE" + '\n');
                 }
+                else{
+                    expandAtLeastOneWord = true;
+                    if(NEARWORDS != 0) System.out.println("After : " + wordList.toString() + '\n');
+                }
+
+                HashSet<String> dict = new HashSet();
+                for(String tmp : curQueryWords) dict.add(tmp);
 
                 sb.append(curWord).append(COMMA);
-                for(String temp : wordList) sb.append(temp).append(COMMA);
+                for(String temp : wordList){
+                    if(dict.contains(temp)) continue;
+                    sb.append(temp).append(COMMA);
+                }
             }
-
-            sb.deleteCharAt(sb.length() - 1);
-
+            sb.delete(sb.length() - 1, sb.length());
             fw.write(sb.toString() + "\n");
 
             if(expandAtLeastOneWord) fwquery.write(id + "\n");
@@ -356,6 +372,127 @@ class W2VModel{
         br.close();
         System.out.println("****OOV = " + countOOV);
         System.out.println("****Total = " + totalWords);
+    }
+
+    private List<String> getNearestWords(Map<String, double[]> word2emb, String[] curQueryWords,
+                                         int NEARWORDS, String StopWordFile) throws IOException{
+        int k = word2emb.get(word2emb.keySet().iterator().next()).length;
+        HashSet<String> stopword = loadStopWord(StopWordFile);
+        boolean useStopWord = true;
+
+        double[] embedding = new double[k];
+        int contributeWords = 0;
+        for(String w : curQueryWords){
+            if(!word2emb.containsKey(w)) continue;
+            if(useStopWord && stopword.contains(w)) continue;
+
+            contributeWords++;
+            double[] temp = word2emb.get(w);
+            for(int i = 0; i < k; i++) embedding[i] += temp[i];
+        }
+        if(contributeWords == 0){
+            List<String> ret = new ArrayList<>();
+            ret.add("NOMATCH");
+            return ret;
+        }
+        System.out.println(contributeWords);
+
+        PriorityQueue<Node> pq = new PriorityQueue<Node>((a, b) -> b.score > a.score ? -1 : 1);// low to high
+        for(String w : word2emb.keySet()){
+            double score = cosSimilarity(embedding, word2emb.get(w));
+            pq.offer(new Node(w, score));
+            if(pq.size() > NEARWORDS) pq.poll();
+        }
+        List<String> res = new ArrayList<>();
+        while(!pq.isEmpty()){
+            Node curNode = pq.poll();
+            System.out.print(curNode.score + " ");
+            res.add(curNode.word);
+        }
+        System.out.println();
+        return res;
+    }
+    private double cosSimilarity(double[] a, double[] b){
+        int k = a.length;
+        double res = 0;
+        for(int i = 0; i < k; i++) res += a[i] * b[i];
+
+        return res / (TwoNorm(a) * TwoNorm(b));
+    }
+    private double TwoNorm(double[] cur){
+        double res = 0;
+        for(double d : cur) res += d * d;
+        return Math.sqrt(res);
+    }
+
+    class Node{
+        String word;
+        double score;
+        Node(String word, double score){
+            this.word = word;
+            this.score = score;
+        }
+        public String toString(){
+            return score + "";
+        }
+    }
+
+    private Map<String, double[]> getEmbeddingMatrix(Word2Vec word2Vec){
+        Map<String, double[]> word2emb = new HashMap();
+        Collection<String> words = word2Vec.vocab().words();
+        for(String w : words){
+            word2emb.put(w, word2Vec.getWordVector(w));
+        }
+        return word2emb;
+    }
+
+    public Map<String, double[]> getEmbeddingMatrix(String filePath) throws IOException{
+        File f = new File(filePath);
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+        String line = "";
+        Map<String, double[]> word2emb = new HashMap<>();
+        int vocabSize = 0, dimension = 0;
+        int countLoading = 0;
+
+        while((line = br.readLine()) != null){
+            if(countLoading % 10000 == 0){
+                System.out.print("\r" + String.format("Word2Vec model: Loaded %d of %d", countLoading, vocabSize));
+            }
+            String[] temp = line.split(" ");
+            if(line.matches("[0-9]+\\s[0-9]+")){
+                vocabSize = Integer.parseInt(temp[0]);
+                dimension = Integer.parseInt(temp[1]);
+            }
+            else{
+                String curWord = temp[0];
+                double[] curVec = new double[dimension];
+                for(int i = 0; i < dimension; i++){
+                    curVec[i] = Double.parseDouble(temp[i + 1]);
+                }
+                word2emb.putIfAbsent(curWord, curVec);
+            }
+            countLoading++;
+        }
+
+        br.close();
+
+        return word2emb;
+    }
+
+    private HashSet<String> loadStopWord(String StopWordFile) throws IOException{//load stopword list
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
+                new ClassPathResource(StopWordFile).getFile())));
+        String line = "";
+
+        HashSet<String> stopword = new HashSet<>();
+
+        while((line = br.readLine()) != null){
+            line = line.trim();
+            if(!line.isEmpty()) stopword.add(line);
+        }
+
+        br.close();
+        return stopword;
     }
 
     private List<String> extractWords(String phrase){// Not implemented
