@@ -381,24 +381,27 @@ class W2VModel{
         boolean useStopWord = true;
 
         double[] embedding = new double[k];
-        int contributeWords = 0;
+        HashSet<String> contributeWords = new HashSet();
+
         for(String w : curQueryWords){
             if(!word2emb.containsKey(w)) continue;
             if(useStopWord && stopword.contains(w)) continue;
 
-            contributeWords++;
+            contributeWords.add(w);
             double[] temp = word2emb.get(w);
             for(int i = 0; i < k; i++) embedding[i] += temp[i];
         }
-        if(contributeWords == 0){
+        if(contributeWords.isEmpty()){
             List<String> ret = new ArrayList<>();
             ret.add("NOMATCH");
             return ret;
         }
-        System.out.println(contributeWords);
+        System.out.println("Contribute word size = " + contributeWords.size());
 
         PriorityQueue<Node> pq = new PriorityQueue<Node>((a, b) -> b.score > a.score ? -1 : 1);// low to high
+
         for(String w : word2emb.keySet()){
+            if(contributeWords.contains(w.toLowerCase())) continue;
             double score = cosSimilarity(embedding, word2emb.get(w));
             pq.offer(new Node(w, score));
             if(pq.size() > NEARWORDS) pq.poll();
