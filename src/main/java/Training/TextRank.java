@@ -19,8 +19,8 @@ import org.json.*;
 //}
 
 public class TextRank{
-    int windowSize = 6;
-    double STOPTHRESHOLD = 1e-6;
+    int windowSize = 10;
+    double STOPTHRESHOLD = 1e-10;
     int max_iter = 200;
     double d = 0.85;
     int TOP = 5;
@@ -56,7 +56,7 @@ public class TextRank{
             Map<String, Double> wordScore = initScore(wordMap);
 
             //4. rank words based on map/connection as TextRank, result stores in wordScore
-            rank(wordMap, wordScore);
+            wordScore = rank(wordMap, wordScore);
 
             //5. Sort the words based on their scores
             List<Node> sortWord = sortWords(wordScore);
@@ -65,7 +65,7 @@ public class TextRank{
             fw.write(queryId + "\t");
             for(int i = 0; i < TOP && i < sortWord.size(); i++){
                 Node cur = sortWord.get(i);
-                fw.write(String.format("%s %.8f\t", cur.word, cur.score));
+                fw.write(String.format("%s %.8f\t", cur.word.replace("\"", ""), cur.score));
             }
             fw.write("\n");
         }
@@ -145,10 +145,13 @@ public class TextRank{
         return wordScore;
     }
 
-    public void rank(Map<String, Set<String>> wordMap, Map<String, Double> wordScore){
+    public Map<String, Double> rank(Map<String, Set<String>> wordMap, Map<String, Double> wordScore){
+
+        Map<String, Double> pre = wordScore;
+
         for(int i = 0; i < max_iter; i++) {
             //System.out.println(i);
-            Map<String, Double> tempScore = new HashMap();
+            Map<String, Double> cur = new HashMap();
             double max_diff = 0;
             for (String curWord : wordMap.keySet()) {
                 Set<String> In = wordMap.get(curWord);
@@ -156,17 +159,19 @@ public class TextRank{
                 double curScore = 1 - d;
                 for (String Vj : In) {
                     if (Vj.equals(curWord)) continue;
-                    curScore += d * ((1 + 0.0) / wordMap.get(Vj).size()) * wordScore.get(Vj);
+                    curScore += d * ((1 + 0.0) / wordMap.get(Vj).size()) * pre.get(Vj);
                 }
 
-                tempScore.put(curWord, curScore);
-                max_diff = Math.max(max_diff, Math.abs(curScore - wordScore.getOrDefault(curWord, 1.0)));
+                cur.put(curWord, curScore);
+//                System.out.println(curWord + " " + pre.get(curWord) + " " + cur.get(curWord));
+                max_diff = Math.max(max_diff, Math.abs(curScore - pre.getOrDefault(curWord, 1.0)));
             }
-            wordScore = tempScore;
+            pre = cur;
 
             //System.out.println(max_diff);
             if (max_diff <= STOPTHRESHOLD) break;
         }
+        return pre;
     }
 
     public List<Node> sortWords(Map<String, Double> wordScore){
@@ -194,14 +199,14 @@ public class TextRank{
         br.close();
         return stopword;
     }
-//
-//    private boolean isChar(String s){
-//        if(s == null || s.trim().isEmpty()) return false;
-//        return s.matches("[A-Z]?[a-z]*|[A-Z]+");
-//    }
+
+    private boolean isChar(String s){
+        if(s == null || s.trim().isEmpty()) return false;
+        return s.matches("[A-Z]?[a-z]*|[A-Z]+");
+    }
 
     private boolean shouldInclude(String s){
-        return !stopword.contains(s);// && isChar(s);
+        return !stopword.contains(s.toLowerCase()) && isChar(s);
     }
 
     class Node{
