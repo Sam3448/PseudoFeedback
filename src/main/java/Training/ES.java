@@ -32,6 +32,7 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import java.io.*;
 import java.net.InetAddress;
 import java.util.*;
+import org.json.*;
 
 public class ES {
 
@@ -65,7 +66,7 @@ public class ES {
      * Input query file, and search for the whole file
      * */
 
-    public void ESsearchQueryFile(String extendQueryPath, String queryResultPath,
+    public void ESsearchQueryFile(String extendQueryPath, String queryResultPath, String queryResultContentPath,
                                   String doc_index, String doc_type, String field) throws IOException{
         //Get query file
         ClassPathResource srcPath = new ClassPathResource(extendQueryPath);
@@ -74,7 +75,11 @@ public class ES {
         String line = "";
 
         //Get output result file
-        FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultPath));
+        FileWriter fw = new FileWriter(
+                new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultPath));
+        FileWriter fwContent = new FileWriter(
+                new File(srcPath.getFile().getParentFile().getParent() + "/" + queryResultContentPath));
+
         test = new FileWriter(new File(testOutputPath));
 
         //Execute each query
@@ -92,22 +97,28 @@ public class ES {
             System.out.println("Total Number of Hits :\t" + hits.getTotalHits());
 
             test.write(queryId + "\t" + queryString + "\t" + hits.getTotalHits() + "\n\n");
+            System.out.println(queryString);
 
             fw.write(queryId + "\t");
+            fwContent.write(queryId + "\t");
 
             for(SearchHit hit : hits.getHits()){
                 String id = hit.getId();
                 String content = hit.getSourceAsString();
+                JSONObject jsonob = new JSONObject(content);
                 float score = hit.getScore();
 
                 fw.write(String.format("%s(%.5f) ", id, score));//Precision .5f
+                fwContent.write(jsonob.getString("gold").replaceAll("\n|\t|\\s+", " ") + "\t");//fixed
             }
 
             fw.write("\n");
+            fwContent.write("\n");
         }
 
         test.close();
         fw.close();
+        fwContent.close();
         br.close();
     }
 

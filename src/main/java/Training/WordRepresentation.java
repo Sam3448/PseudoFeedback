@@ -53,7 +53,8 @@ public class WordRepresentation {
 
     private static boolean Train;
     private static String modelPath, extendQueryPath, originalQueryPath, copyQueryPath, changedQueryPath, StopWordFile;
-    private static String queryResultPath;
+    private static String queryResultPath, queryResultContentPath;
+    private static String rankedWordPath;
     private static String doc_index, doc_type, field;
 
     private static int PSEUDO_LOOP;
@@ -84,6 +85,9 @@ public class WordRepresentation {
 
         extendQueryPath = wordRepConfig.get("extendQueryPath".toLowerCase());
         queryResultPath = wordRepConfig.get("queryResultPath".toLowerCase());
+        queryResultContentPath = wordRepConfig.get("queryResultContentPath".toLowerCase());
+        rankedWordPath = wordRepConfig.get("rankedWordPath".toLowerCase());
+
         StopWordFile = wordRepConfig.get("stopWordPath".toLowerCase());
 
         changedQueryPath = wordRepConfig.get("changedQueryPath".toLowerCase());
@@ -132,7 +136,7 @@ public class WordRepresentation {
 
                 //Step 4: ES for result file
                 ES es = new ES(totalConfig.get("ES"));
-                es.ESsearchQueryFile(extendQueryPath, queryResultPath, doc_index, doc_type, field);
+                es.ESsearchQueryFile(extendQueryPath, queryResultPath, queryResultContentPath, doc_index, doc_type, field);
                 es.close();
 
                 //Pseudo feedback to copy query file
@@ -144,8 +148,9 @@ public class WordRepresentation {
         }
     }
 
-    public static void pseudoFeedback(){//???
-
+    public static void pseudoFeedback() throws IOException{
+        TextRank tr = new TextRank(queryResultContentPath, rankedWordPath);
+        tr.handle();
     }
 
     //Copy original query file
@@ -349,6 +354,11 @@ class W2VModel{
                 }
                 else{
                     expandAtLeastOneWord = true;
+
+                    for(int i = 0; i < wordList.size(); i++){
+                        wordList.set(i, wordList.get(i).replaceAll("-+|\\.", ""));
+                    }
+
                     if(NEARWORDS != 0) System.out.println("After : " + wordList.toString() + '\n');
                 }
 

@@ -216,7 +216,7 @@ public class Evaluation {
         //System.out.println("Final P_precision =\t" + P_overall_precision);
         //System.out.println("Final P_recall =\t" + P_overall_recall);
         //System.out.println("Final F1 =\t" + P_overall_F1);
-        //System.out.println("Final MAP =\t" + MAP);
+        System.out.println("Final MAP =\t" + MAP);
         System.out.println("total_retrieved =\t" + total_retrieved);
         System.out.println("****************/RESULT*****************");
 
