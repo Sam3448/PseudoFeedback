@@ -126,25 +126,29 @@ public class WordRepresentation {
                 System.exit(0);
             }
 
-            //Copy original query file
-            copyOriginalQuery();
+            //First clear ranked word file
+            clearRankedWord(rankedWordPath);
+            System.out.println("Ranked Word File Cleaned");
+
+            //load word2emb
+            Map<String, double[]> word2emb = w2v.loadW2V(modelPath, changedQueryPath);
 
             //Pseudo feedback and query extension
             for(int i = 0; i < PSEUDO_LOOP; i++) {
-                //Step 3: extend query file
-                w2v.loadAndTestW2v(modelPath, copyQueryPath, extendQueryPath, changedQueryPath, StopWordFile, log);
+
+                //Step 3: extend query file, first add PRF results, then w2v expand
+                w2v.extendQuery(originalQueryPath, extendQueryPath, StopWordFile, rankedWordPath, word2emb, log);
 
                 //Step 4: ES for result file
                 ES es = new ES(totalConfig.get("ES"));
                 es.ESsearchQueryFile(extendQueryPath, queryResultPath, queryResultContentPath, doc_index, doc_type, field);
                 es.close();
 
-                //Pseudo feedback to copy query file
+                //PRF, write ranked words to file
                 pseudoFeedback();
-            }
 
-            //***get eval result
-            test.getTestResult();
+                test.getTestResult();
+            }
         }
     }
 
@@ -153,26 +157,13 @@ public class WordRepresentation {
         tr.handle();
     }
 
-    //Copy original query file
-    public static void copyOriginalQuery() throws IOException{
-        ClassPathResource srcPath = new ClassPathResource(originalQueryPath);
-        File originalQueryFile = srcPath.getFile();
-        if(!originalQueryFile.exists()){
-            log.info("Please import query file (Parsed) for extension.");
-            System.exit(0);
-        }
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(originalQueryFile)));
-        FileWriter fw = new FileWriter(new File(srcPath.getFile().getParentFile().getParent()
-                + "/" + copyQueryPath));
-
-        String line = "";
-        while((line = br.readLine()) != null){
-            fw.write(line + "\n");
-        }
-
-        br.close();
+    private static void clearRankedWord(String rankedWordPath) throws IOException{
+        ClassPathResource srcPath = new ClassPathResource(rankedWordPath);
+        File rankedWordFile = srcPath.getFile();
+        PrintWriter fw = new PrintWriter(rankedWordFile);
         fw.close();
     }
+
 }
 
 class W2VModel{
@@ -180,6 +171,7 @@ class W2VModel{
     private static String COMMA;
     private static int NEARWORDS;
     private static int TOLERANCE;
+    private static boolean PRF;
 
     private static Trie root;
     private static PrefixSearch prefixsearch;
@@ -190,6 +182,7 @@ class W2VModel{
         COMMA = config.get("COMMA".toLowerCase());
         NEARWORDS = Integer.parseInt(config.get("NEARWORDS".toLowerCase()));
         TOLERANCE = Integer.parseInt(config.get("TOLERANCE".toLowerCase()));
+        PRF =  config.get("PRF".toLowerCase()).equals("true");
     }
 
     /**
@@ -244,11 +237,7 @@ class W2VModel{
      *
      * */
 
-
-    public void loadAndTestW2v(String modelPath, String originalQueryPath,
-                               String extendQueryPath, String changedQueryPath,
-                               String StopWordFile, Logger log) throws IOException{
-
+    public Map<String, double[]> loadW2V(String modelPath, String changedQueryPath) throws IOException{
         Map<String, double[]> word2emb = new HashMap();
         String absolutePath = new ClassPathResource(modelPath).getFile().getAbsolutePath();
 
@@ -273,8 +262,7 @@ class W2VModel{
         prefixsearch = new PrefixSearch();
         root = prefixsearch.buildeTrieRoot(vocab);
 
-        //word2vec done. extend query
-        extendQuery(originalQueryPath, extendQueryPath, StopWordFile, word2emb, log);
+        return word2emb;
     }
 
     /**
@@ -287,7 +275,7 @@ class W2VModel{
      *   3. Python version?
      * */
 
-    public void extendQuery(String originalQueryPath, String extendQueryPath, String StopWordFile,
+    public void extendQuery(String originalQueryPath, String extendQueryPath, String StopWordFile, String rankedWordPath,
                             Map<String, double[]> word2emb, Logger log) throws IOException{
         ClassPathResource srcPath = new ClassPathResource(originalQueryPath);
         if(! srcPath.getFile().exists()){
@@ -307,6 +295,8 @@ class W2VModel{
         int countOOV = 0;
         int totalWords = 0;
 
+        Map<String, List<String>> rankedWord = loadRankedWords(rankedWordPath);
+
         while((line = br.readLine()) != null){
             if(line.startsWith("query_id")){
                 continue;
@@ -316,7 +306,17 @@ class W2VModel{
 
             String[] q = line.split("\t");
             String id = q[0], words = q[1];
-            String[] w = words.split(COMMA);
+            String[] wtemp = words.split(COMMA);
+            List<String> w = new ArrayList();
+            for(String temp : wtemp) w.add(temp);
+
+            //PRF
+            System.out.println(w.toString());
+            if(PRF && rankedWord.containsKey(id)){
+                List<String> curPRFWords = rankedWord.get(id);
+                for(String t : curPRFWords) w.add(t);
+            }
+            System.out.println(w.toString());
 
             sb.append(id).append("\t");
             boolean expandAtLeastOneWord = false;
@@ -506,6 +506,29 @@ class W2VModel{
 
         br.close();
         return stopword;
+    }
+
+    private Map<String, List<String>> loadRankedWords(String rankeWordPath) throws IOException{
+        Map<String, List<String>> rankedWord = new HashMap();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
+                new ClassPathResource(rankeWordPath).getFile())));
+        String line = "";
+
+        while((line = br.readLine()) != null){
+            String[] queryIdAndWords = line.split("\t");
+            String queryId = queryIdAndWords[0];
+            List<String> words = new ArrayList();
+            for(int i = 1; i < queryIdAndWords.length; i++){
+                String[] temp = queryIdAndWords[i].split("\\s");
+                words.add(temp[0]);
+            }
+            rankedWord.put(queryId, words);
+        }
+
+        br.close();
+
+        return rankedWord;
     }
 
     private List<String> extractWords(String phrase){// Not implemented
